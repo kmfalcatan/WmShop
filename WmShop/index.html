@@ -6,6 +6,8 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/signIn.css">
+    <link rel="stylesheet" href="/assets/css/signUp.css">
 </head>
 <body>
     <div class="container">
@@ -15,7 +17,7 @@
             </div>
 
             <div class="nameContainer">
-                <button class="signInButton">Sign in</button>
+                <button class="signInButton" onclick="toggleContainers('signInContainer')">Sign in</button>
             </div>
         </div>
 
@@ -26,7 +28,7 @@
                 </div>
     
                 <div class="buttonContainer">
-                    <button class="signInButton">Shop now</button>
+                    <button class="signInButton" onclick="toggleContainers('signInContainer')">Shop now</button>
                 </div>
             </div>
     
@@ -40,5 +42,88 @@
             </div>
         </div>
     </div>
+
+    <div class="signInContainer">
+        <div class="subSignInContainer">
+            <div class="signIn">
+                <p>Sign in</p>
+            </div>
+
+            <div class="inputUserContainer">
+                <div class="subInputUserContainer">
+                    <input class="inputUser" type="text" placeholder="Email">
+                </div>
+
+                <div class="subInputUserContainer">
+                    <input class="inputUser" type="text" placeholder="text">
+                </div>
+
+                <div class="subInputUserContainer">
+                    <button class="signInButton">Sign in</button>
+                    <button class="signInButton" onclick="toggleContainers('signInContainer')">Back</button>
+                </div>
+            </div>
+
+            <div class="subInputUserContainer1">
+                <p class="text1">Don't have an account?</p>
+                <button class="signInButton" onclick="toggleContainers('signUpContainer')">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="signUpContainer">
+        <div class="subSignInContainer1">
+            <div class="signIn1">
+                <p>Sign up</p>
+            </div>
+
+            <div class="inputUserContainer1">
+                <div class="subInputUserContainer2">
+                    <input class="inputUser1" type="text" placeholder="First name">
+                    <input class="inputUser1" type="text" placeholder="Last name">
+                    <input class="inputUser1" type="text" placeholder="Middle name">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <input class="inputUser2" type="text" placeholder="Email">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <input class="inputUser2" type="text" placeholder="Address">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <input class="inputUser2" type="text" placeholder="Contact no.">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <select class="inputUser3" name="" id="">
+                        <option value="">
+                            Choose a college
+                        </option>
+                    </select>
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <input class="inputUser2" type="text" placeholder="Password">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <input class="inputUser2" type="text" placeholder="Confirm Password">
+                </div>
+
+                <div class="subInputUserContainer2">
+                    <button class="signInButton">Sign up</button>
+                </div>
+            </div>
+
+            <div class="subInputUserContainer3">
+                <p class="text2">Already have an account?</p>
+                <button class="signInButton" onclick="toggleContainers('signInContainer')">Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+.signInContainer{
+    position: absolute;
+    outline: red dashed 1px;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.562);
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.subSignInContainer{
+    outline: red dashed 1px;
+    height: 23rem;
+    width: 20rem;
+    background-color: snow;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    position: absolute;
+}
+
+.signIn{
+    outline: red dashed 1px;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.inputUserContainer{
+    outline: red dashed 1px;
+    height: 13rem;
+    background-color: rgb(255,77,77);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.subInputUserContainer{
+    outline: white dashed 1px;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.subInputUserContainer1{
+    margin-top: 1rem;outline: white dashed 1px;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.inputUser{
+    height: 3rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+}
+
+.text1{
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,87 @@
+.signUpContainer{
+    position: absolute;
+    outline: red dashed 1px;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.562);
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.subSignInContainer1{
+    outline: red dashed 1px;
+    height: 43rem;
+    width: 22rem;
+    background-color: snow;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.signIn1{
+    outline: red dashed 1px;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.inputUserContainer1{
+    outline: red dashed 1px;
+    height: 34rem;
+    background-color: rgb(255,77,77);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.subInputUserContainer2, .subInputUserContainer3{
+    outline: white dashed 1px;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 0.5rem;
+}
+
+.subInputUserContainer3{
+    margin-top: 1rem;
+    flex-direction: column;
+}
+.inputUser1{
+    height: 3rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+.inputUser2{
+    height: 3rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+.inputUser3{
+    height: 3rem;
+    width: 20.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+.text2{
+    margin-bottom: 0.5rem;
+}
