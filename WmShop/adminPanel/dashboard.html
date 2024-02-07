@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+    <div class="container1">
+        <div class="headerContainer">
+            <div class="subHeaderContainer">
+                <div class="imageContainer">
+                    <div class="subImageContainer">
+                        <img class="image" src="/assets/img/wmsuLogo.png" alt="">
+                    </div>
+
+                    <div class="nameContainer">
+                        <p class="companyName">WmShop</p>
+                    </div>
+                </div>
+
+                <div class="profileContainer">
+                    <div class="subProfileContainer">
+                        <img class="image1" src="../assets/img/person-circle.png" alt="">
+                    </div>
+
+                    <div class="subProfileContainer">
+                        <div class='menubarContainer' onclick='toggleMenu(this)'>
+                            <div class='line'></div>
+                            <div class='line'></div>
+                            <div class='line'></div>
+                        </div>
+
+                        <p class="adminName">Admin</p>
+                    </div>
+                </div>
+            </div>
+            <div class='sideNavBarContainer'>
+                <div class='sideNavBar1'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/addEquip.php'>
+                            Orders
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/th-removebg-preview.png" alt="">
+                        <img class="image5" src="../assets/img/plus-circle.png" alt="">
+                    </div>
+                </div>
+        
+                <div class='sideNavBar'>
+                        <div class="subSideNavBar">
+                            <a class='profile' href='../admin panel/dashboard.php'>
+                                Inventory
+                            </a>
+                        </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/file-text-circle.png" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/userAccount.php'>
+                            Add item
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/person-circle.png" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/budget.php'>
+                            Approve user
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/th__1_-removebg-preview.png" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/appointment.php'>
+                            Approve item
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/calendar.png" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/admin-guide.php'>
+                            Users
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/question-circle (2).png" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/about.php'>
+                            Transaction
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image4" src="../assets/img/about-us-icon-3.jpg" alt="">
+                    </div>
+                </div>
+                <div class='sideNavBar2'>
+                    <div class="subSideNavBar">
+                        <a class='profile' href='../admin panel/setting.php'>
+                            Create user account
+                        </a>
+                    </div>
+        
+                    <div class="image2">
+                        <img class="image3" src="../assets/img/vector-settings-icon-removebg-preview.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="container">
+           <div class="searchBarContainer">
+                <input class="searchBar" type="text" id="searchInput" placeholder="Search..." oninput="liveSearch()">
+           </div>
+
+           <div class="tableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">ITEM IMAGE</th>
+                            <th rowspan="2">ITEM NAME</th>
+                            <th rowspan="2">QUANTITY</th>
+                            <th class="th4" colspan="6">STOCKS</th>
+                            <th rowspan="2">PRICE</th>
+                            <th rowspan="2">ACTION</th>
+                        </tr>
+
+                        <tr>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                            <th>XXL</th>
+                            <th>XXXL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>DASDAS</td>
+                            <td>DASDASD</td>
+                            <td>DASDASD</td>
+                            <td>S</td>
+                            <td>M</td>
+                            <td>L</td>
+                            <td>XL</td>
+                            <td>XXL</td>
+                            <td>XXXL</td>
+                            <td>1000</td>
+                            <td class='actionContainer'>
+                            <a href=''><button class='action'>View</button></a>
+                            <button class='action'>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body{
+    overflow: hidden;
+}
+
 .container{
     height: 100vh;
     background: linear-gradient(to right, rgb(255,148,148), white);
