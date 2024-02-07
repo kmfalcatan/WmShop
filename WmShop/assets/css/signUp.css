@@ -1,19 +1,13 @@
 .signUpContainer{
-    position: absolute;
-    outline: red dashed 1px;
     height: 100vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.562);
-    top: 0;
-    bottom: 0;
+    background: linear-gradient(to right, rgb(255,148,148), white);
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .subSignInContainer1{
-    outline: red dashed 1px;
     height: 43rem;
     width: 22rem;
     background-color: snow;
@@ -22,7 +16,6 @@
 }
 
 .signIn1{
-    outline: red dashed 1px;
     height: 4rem;
     display: flex;
     justify-content: center;
@@ -32,8 +25,7 @@
 }
 
 .inputUserContainer1{
-    outline: red dashed 1px;
-    height: 34rem;
+    height: 32rem;
     background-color: rgb(255,77,77);
     border-radius: 0.5rem;
     display: flex;
@@ -41,7 +33,6 @@
 }
 
 .subInputUserContainer2, .subInputUserContainer3{
-    outline: white dashed 1px;
     height: 4rem;
     width: 100%;
     display: flex;
