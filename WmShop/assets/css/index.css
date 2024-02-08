@@ -33,7 +33,7 @@ body{
 }
 
 .signInButton{
-    height: 2.5rem;
+    height: 2rem;
     width: 7rem;
     border-radius: 5rem;
     border: none;
@@ -160,6 +160,10 @@ body{
     .subTextContainer{
         width: 20rem;
     }
+
+    .signInButton{
+        height: 2rem;
+    }
 }
 
 /*laptop*/
@@ -214,8 +218,7 @@ body{
     }
 
     .signInButton{
-        width: 10rem;
-        height: 3rem;
+        height: 2rem;
     }
 }
 
@@ -271,7 +274,6 @@ body{
     }
 
     .signInButton{
-        width: 10rem;
-        height: 3rem;
+        height: 2rem;
     }
 }
