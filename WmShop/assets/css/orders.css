@@ -1,0 +1,152 @@
+.container2{
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subContainer2{
+    height: 35rem;
+    width: 90%;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 250, 250, 0.582);
+    border: solid rgb(204, 204, 204) 1px;
+    padding: 0.5rem;
+}
+
+.itemContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.subItemContainer{
+    height: 10rem;
+    width: 23rem;
+    border-radius: 0.5rem;
+    background-color: snow;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: solid rgb(204, 204, 204) 1px;
+}
+
+.imageContainer2{
+    height: 100%;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subImageContainer2{
+    height: 6rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, rgb(255,148,148), rgb(255,35,35));
+    cursor: pointer;
+}
+
+.infoContainer{
+    height: 100%;
+    width: 8.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.5rem;
+    flex-direction: column;
+    border-right: solid rgb(204, 204, 204) 1px;
+}
+
+.subInfoContainer{
+    height: 2.5rem;
+    width: 8rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, rgb(255,148,148), rgb(255,35,35));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    overflow: auto;
+    color: white;
+}
+
+.updateContainer{
+    height: 100%;
+    width: 7.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+}
+
+.subUpdateContainer{
+    width: 100%;
+    height: 2.5rem;
+    margin-left: 0.5rem;
+}
+
+.update{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(204, 204, 204);
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    border: none;
+    background: linear-gradient(to right, rgb(255,148,148), rgb(255,35,35));
+    cursor: pointer;
+    transition: all 0.15s;
+    color: white;
+}
+
+.update:hover{
+    background: linear-gradient(to right, rgb(255,192,192), rgb(255,87,87));
+    color: black;
+}
+
+.update:active{
+    background: linear-gradient(to right, rgb(255,87,87), rgb(255,0,0));
+    color: white;
+}
+
+.image6{
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+/*tablet*/
+@media only screen and (min-width: 601px){
+    .subItemContainer{
+        width: 30rem;
+    }
+
+    .imageContainer2{
+        width: 10rem;
+    }
+
+    .subImageContainer2{
+        height: 100%;
+    }
+
+    .infoContainer{
+        width: 10rem;
+    }
+
+    .subInfoContainer{
+        width: 9.5rem;
+    }
+
+    .updateContainer{
+        width: 10rem;
+    }
+}

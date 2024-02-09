@@ -10,7 +10,7 @@
 .subSignInContainer1{
     height: 35rem;
     width: 22rem;
-    background-color: snow;
+    background-color: rgba(255, 250, 250, 0.582);
     border-radius: 0.5rem;
     padding: 0.5rem;
 }
@@ -75,4 +75,29 @@
 
 .text2{
     margin-bottom: 0.5rem;
+}
+
+
+/*tablet*/
+@media only screen and (min-width: 601px){
+    .subSignInContainer1{
+        width: 30rem;
+    }
+
+    .subInputUserContainer2{
+        width: 100%;
+        outline: white dashed 1px;
+    }
+
+    .inputUser1{
+        width: 29.5%;
+    }
+
+    .inputUser2{
+        width: 95%;
+    }
+
+    .inputUser3{
+        width: 97%;
+    }
 }
