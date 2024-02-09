@@ -52,6 +52,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: right;
+    outline: red dashed 1px;
 }
 
 
@@ -61,6 +62,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: red dashed 1px;
 }
 
 .profileContainer p{
@@ -110,13 +112,14 @@ body{
 }
 
 .sideNavBarContainer{
-    height: 20.4em;
+    height: 22.8em;
     width:  12.5rem;
     position: fixed;
     right: -12.5rem;
     top: 4.5rem;
-    background-color: rgb(255,148,148);
+    background-color: snow;
     z-index: 1;
+    outline: red dashed 1px;
 }
 
 .fadeIn{
@@ -277,17 +280,19 @@ body{
     border-radius: 1rem;
     border: none;
     background: linear-gradient(to right, rgb(255,148,148), rgb(255,35,35));
-    color: rgb(41,41,41);
     cursor: pointer;
     transition: all 0.15s;
+    color: white;
 }
 
 .action:hover{
     background: linear-gradient(to right, rgb(255,192,192), rgb(255,87,87));
+    color: black;
 }
 
 .action:active{
     background: linear-gradient(to right, rgb(255,87,87), rgb(255,0,0));
+    color: white;
 }
 
 /*Cellphone*/
@@ -448,7 +453,7 @@ body{
     }
 
     .sideNavBarContainer{
-        height: 21rem;
+        height: 29rem;
         position: absolute;
         left: -9.7rem;
         top: 15rem;
@@ -493,21 +498,28 @@ body{
     }
 
     .tableContainer{
-        height: 71%;
+        height: 84%;
         width: 90%;
         background-color: snow;
         overflow-x: auto;
         border-radius: 0.5rem;
+        border: solid 1px rgb(248, 45, 45);
     }
 
     .sideNavBar1{
         border-top-right-radius: 1rem;
+        height: 3.1rem;
     }
 
     .sideNavBar2{
         border-bottom-right-radius: 1rem;
         height: 3.1rem;
     }
+
+    .sideNavBar{
+        height: 3.1rem;
+    }
+
     table{
         border-collapse: collapse;
         text-align: center;
@@ -574,7 +586,7 @@ body{
     }
 
     .sideNavBarContainer{
-        height: 21rem;
+        height: 29rem;
         position: absolute;
         left: -9.7rem;
         top: 15rem;
@@ -631,19 +643,25 @@ body{
     }
 
     .tableContainer{
-        height: 71%;
+        height: 84%;
         width: 90%;
         background-color: snow;
         overflow-x: auto;
         border-radius: 0.5rem;
+        border: solid 1px rgb(248, 45, 45);
     }
 
     .sideNavBar1{
         border-top-right-radius: 1rem;
+        height: 3.1rem;
     }
 
     .sideNavBar2{
         border-bottom-right-radius: 1rem;
+        height: 3.1rem;
+    }
+
+    .sideNavBar{
         height: 3.1rem;
     }
 
