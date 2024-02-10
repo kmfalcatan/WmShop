@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: linear-gradient(to right, rgb(255,148,148), white);
+    font-family: system-ui, -apple-system;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-direction: row;
+}
+
+.subContainer{
+    height: 40rem;
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 250, 250, 0.582);
+    border: solid rgb(204, 204, 204) 1px;
+    position: relative;
+}
+
+.searchBarContainer{
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBar{
+    height: 3rem;
+    width: 100%;
+    border-radius: 5rem;
+    border: none;
+    border: solid rgb(204, 204, 204) 1px;
+    padding-left: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.messageContainer{
+    height: 32rem;
+    overflow: auto;
+}
+
+.subMessageContainer{
+    height: 6rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    background-color: snow;
+}
+
+.nameContainer{
+    height: 100%;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deleteContainer{
+    height: 100%;
+    width: 3.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subDeleteContainer{
+    height: 3.3rem;
+    width: 3.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete{
+    opacity: 0.5px;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.chatContainer{
+    height: 40rem;
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 250, 250, 0.582);
+    border: solid rgb(204, 204, 204) 1px;
+    position: absolute;
+    display: none;
+}
+
+.subChatContainer{
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: snow;
+}
+
+.studentChatContainer{
+    height: 35rem;
+    overflow: auto;
+}
+
+.studentChat{
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.backContainer{
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: rgb(255,148,148);
+}
+
+.backIcon{
+    height: 3rem;
+    cursor: pointer;
+}
+
+.chat{
+    height: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    background: linear-gradient(to right, rgb(245, 203, 203), rgb(255, 158, 158));
+    color: white;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+}
+
+.chat1{
+    height: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    background: linear-gradient(to right, rgb(255,148,148), rgb(255,35,35));
+    color: white;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+}
+
+.adminChat{
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.chatBarContainer{
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.subChatBarContainer{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatBar{
+    height: 3rem;
+    width: 90%;
+    border-radius: 0.5rem;
+    border: solid rgb(204, 204, 204) 1px;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.sendContainer{
+    height: 100%;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendIcon{
+    height: 3rem;
+}
+
+/*tablet*/
+@media only screen and (min-width: 601px){
+    .nameContainer{
+        width: 100%;
+    }
+    
+    .subChatBarContainer{
+        width: 25rem;
+    }
+
+    .chatContainer{
+        width: 30rem;
+    }
+
+    .subContainer{
+        width: 30rem;
+    }
+}
