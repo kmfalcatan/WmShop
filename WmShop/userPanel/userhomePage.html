@@ -52,7 +52,7 @@
             <div class='sideNavBarContainer'>
                 <div class='sideNavBar1'>
                     <div class="subSideNavBar">
-                        <a class='profile' href='/adminPanel/orders.html'>
+                        <a class='profile' href='/userPanel/profile.html'>
                             Profile
                         </a>
                     </div>
@@ -65,7 +65,7 @@
         
                 <div class='sideNavBar'>
                         <div class="subSideNavBar">
-                            <a class='profile' href='/adminPanel/dashboard.html'>
+                            <a class='profile' href='/userPanel/myOrder.html'>
                                 My Orders
                             </a>
                         </div>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="searchBarContainer">
-        <input class="searchBar" type="text" placeholder="Search item..">
+        <input class="searchBar" type="text" placeholder="Search item.." id="searchInput" oninput="filterItems()">
     </div>
 
     <div class="filterContainer">
@@ -115,7 +115,38 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container"  id="itemContainer">
+        <div class="itemContainer">
+            <div class="subContainer">
+                <div class="imageContainer1">
+                    <img class="imageItem" src="" alt="">
+                </div>
+    
+                <div class="itemInfoContainer">
+                    <div class="subItemInfoContainer">
+                        <div class="itemNameContainer">
+                            <p class="itemName">Dept Shirt</p>
+                            <p class="itemName">Price: 500</p>
+                        </div>
+    
+                        <div class="viewButtonContainer">
+                            <button class="viewButton">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="viewIconContainer">
+                <div class="subViewIconContainer">
+                    <a href="/userPanel/viewItem.html">
+                        <div class="viewIcon">
+                            <img class="icon" src="/assets/img/view-icon-symbol-sign-vector-removebg-preview.png" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="itemContainer">
             <div class="subContainer">
                 <div class="imageContainer1">
@@ -148,5 +179,6 @@
         </div>
     </div>
     <script src="/assets/js/dashboard.js"></script>
+    <script src="/assets/js/userhomePage.js"></script>
 </body>
 </html>
