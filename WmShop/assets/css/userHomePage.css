@@ -54,7 +54,6 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: right;
-    outline: red dashed 1px;
 }
 
 
@@ -64,7 +63,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: red dashed 1px;
     cursor: pointer;
 }
 
@@ -122,7 +120,6 @@ body{
     top: 4.5rem;
     background-color: snow;
     z-index: 1;
-    outline: red dashed 1px;
 }
 
 .fadeIn{
@@ -208,7 +205,6 @@ body{
 }
 
 .searchBarContainer{
-    outline: red dashed 1px;
     height: 5rem;
     width: 100%;
     margin-top: 2rem;
@@ -227,7 +223,6 @@ body{
 }
 
 .filterContainer{
-    outline: red dashed 1px;
     height: 4rem;
     display: flex;
     justify-content: center;
@@ -236,7 +231,6 @@ body{
 }
 
 .subFilterContainer{
-    outline: red dashed 1px;
     height: 100%;
     width: 4rem;
     border-radius: 0.5rem;
@@ -260,7 +254,6 @@ body{
 }
 
 .container{
-    outline: red dashed 1px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -272,7 +265,6 @@ body{
 }
 
 .subContainer{
-    outline: red dashed 1px;
     height: 16rem;
     width: 12rem;
     border-radius: 0.5rem;
@@ -284,7 +276,6 @@ body{
 .imageContainer1{
     height: 100%;
     width: 100%;
-    outline: red dashed 1px;
     border-radius: 0.5rem;
 }
 
@@ -294,7 +285,6 @@ body{
 }
 
 .itemInfoContainer{
-    outline: red dashed 1px;
     position: absolute;
     height: 5rem;
     bottom: 0;
@@ -305,7 +295,6 @@ body{
 }
 
 .subItemInfoContainer{
-    outline: red dashed 1px;
     height: 100%;
     width: 10.5rem;
     border-radius: 0.5rem 0.5rem 0 0;
@@ -313,7 +302,6 @@ body{
 }
 
 .itemNameContainer{
-    outline: red dashed 1px;
     height: 2.5rem;
     display: flex;
     justify-content: center;
@@ -323,7 +311,6 @@ body{
 }
 
 .itemName{
-    outline: red dashed 1px;
     color: snow;
     width: 5rem;
     display: flex;
@@ -331,7 +318,6 @@ body{
 }
 
 .viewButtonContainer{
-    outline: red dashed 1px;
     height: 2.5rem;
     display: flex;
     justify-content: center;
@@ -554,7 +540,6 @@ body{
 
     .viewIconContainer {
         position: absolute;
-        outline: red dashed 1px;
         height: 16rem;
         width: 12rem;
         border-radius: 0.5rem;
@@ -567,7 +552,6 @@ body{
     }
     
     .subViewIconContainer {
-        outline: red dashed 1px;
         height: 3rem;
         width: 100%;
         display: flex;
@@ -577,7 +561,6 @@ body{
     }
 
     .viewIcon {
-        outline: red dashed 1px;
         height: 100%;
         width: 3rem;
         border-radius: 5rem;
@@ -604,6 +587,10 @@ body{
 
     .itemContainer{
         position: relative;
+    }
+
+    .searchBar{
+        width: 40rem;
     }
 }
 
@@ -728,5 +715,9 @@ body{
 
     .sideNavBar{
         height: 3.1rem;
+    }
+
+    .searchBar{
+        width: 40rem;
     }
 }
