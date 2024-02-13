@@ -1,5 +1,4 @@
 .filterContainer1{
-    outline: red dashed 1px;
     height: 3rem;
     width: 100%;
     display: flex;
@@ -7,7 +6,6 @@
 }
 
 .subFilterContainer1{
-    outline: red dashed 1px;
     height: 2rem;
     width: 5rem;
     margin-left: 5%;
@@ -17,7 +15,6 @@
 }
 
 .subFilterContainer2{
-    outline: red dashed 1px;
     height: 2rem;
     width: 5rem;
     margin-left: 1rem;

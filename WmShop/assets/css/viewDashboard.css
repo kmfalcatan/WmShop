@@ -10,7 +10,6 @@ body{
 
 .container{
     height: 100vh;
-    outline: red dashed 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +26,6 @@ body{
 }
 
 .imageContainer{
-    outline: red dashed 1px;
     height: 13rem;
     display: flex;
     justify-content: center;
@@ -36,7 +34,6 @@ body{
 }
 
 .uploadButtonCoontainer{
-    outline: red dashed 1px;
     height: 3rem;
     width: 100%;
     display: flex;
@@ -67,7 +64,6 @@ body{
 }
 
 .subImageContainer{
-    outline: red dashed 1px;
     height: 10rem;
     width: 10rem;
     border-radius: 0.5rem;
@@ -81,7 +77,6 @@ body{
 }
 
 .backButtonContainer{
-    outline: red dashed 1px;
     height: 3rem;
     width: 100%;
     margin-bottom: 2rem;
@@ -89,7 +84,6 @@ body{
 }
 
 .subbackButtonContainer{
-    outline: red dashed 1px;
     height: 100%;
     width: 3rem;
     margin-left: 1.4rem;
@@ -113,7 +107,6 @@ body{
     background-color: snow;
     display: flex;
     align-items: center;
-    outline: red dashed 1px;
     border-radius: 0.5rem;
   }
 
@@ -121,7 +114,6 @@ body{
     height: 100%;
     width: 100%;
     animation: fade 1s ease-in-out; /* Add fade animation */
-    outline: red dashed 1px;
   }
 
   @keyframes fade {
@@ -153,12 +145,10 @@ body{
   }
 
 .infoContianer{
-    outline: red dashed 1px;
     height: 24rem;
 }
 
 .subInfoContainer{
-    outline: red dashed 1px;
     height: 4rem;
     display: flex;
     justify-content: center;
@@ -176,14 +166,12 @@ body{
 }
 
 .stockContainer{
-    outline: red dashed 1px;
     height: 12rem;
 }
 
 .subStockContainer{
     height: 2rem;
     width: 100%;
-    outline: red dashed 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,7 +180,6 @@ body{
 }
 
 .sizeContainer{
-    outline: red dashed 1px;
     height: 4rem;
     width: 100%;
     display: flex;
@@ -212,7 +199,6 @@ body{
 }
 
 .editButtonContainer{
-    outline: red dashed 1px;
     height: 4rem;
     width: 100%;
     display: flex;
