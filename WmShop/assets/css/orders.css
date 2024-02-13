@@ -82,11 +82,10 @@
     height: 100%;
     width: 7.4rem;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     row-gap: 0.5rem;
-
+    padding-top: 1.5rem;
 }
 
 .subUpdateContainer{

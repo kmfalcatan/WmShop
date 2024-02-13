@@ -46,13 +46,16 @@ body{
     font-size: 1.3rem;
 }
 
+.image1{
+    height: 2rem;
+}
+
 .profileContainer{
     height: 100%;
     width: 12rem;
     display: flex;
     flex-direction: row;
     justify-content: right;
-    outline: red dashed 1px;
 }
 
 
@@ -62,7 +65,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: red dashed 1px;
     cursor: pointer;
 }
 
@@ -117,10 +119,8 @@ body{
     width:  12.5rem;
     position: fixed;
     right: -12.5rem;
-    top: 4.5rem;
     background-color: snow;
     z-index: 1;
-    outline: red dashed 1px;
 }
 
 .fadeIn{
@@ -457,7 +457,7 @@ body{
         height: 29rem;
         position: absolute;
         left: -9.7rem;
-        top: 15rem;
+        top: 25%;
         border-radius: 0rem 1rem 1rem 0rem;
         transition: all 0.5s;
         text-align: center;
@@ -589,7 +589,7 @@ body{
         height: 29rem;
         position: absolute;
         left: -9.7rem;
-        top: 15rem;
+        top: 30%;
         border-radius: 0rem 1rem 1rem 0rem;
         transition: all 0.5s;
         text-align: center;

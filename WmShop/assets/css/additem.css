@@ -138,10 +138,6 @@ body{
     border-radius: 3px 0 0 3px;
   }
 
-.infoContianer10{
-    height: 24rem;
-}
-
 .subInfoContainer10{
     height: 4rem;
     display: flex;
@@ -194,10 +190,17 @@ body{
 
 .editButtonContainer10{
     height: 4rem;
-    width: 100%;
     display: flex;
+    width: 90%;
     justify-content: center;
     align-items: center;
+    position: absolute;
+}
+
+.infoContianer10{
+    height: 20rem;
+    position: relative;
+    overflow: auto;
 }
 
 .editButton10{
@@ -232,5 +235,9 @@ body{
 
     .uploadImage10{
         margin-left: 8.5rem;
+    }
+
+    .editButtonContainer10{
+        width: 30rem;
     }
 }
