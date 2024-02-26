@@ -43,6 +43,7 @@ body{
 
 .uploadButton{
     color: transparent;
+    margin-left: 38%;
 }
 
 .uploadImage{
@@ -146,6 +147,7 @@ body{
 
 .infoContianer{
     height: 24rem;
+    overflow: auto;
 }
 
 .subInfoContainer{
@@ -238,5 +240,9 @@ body{
 
     .uploadImage{
         margin-left: 8.5rem;
+    }
+
+    .uploadButton{
+        margin-left: 55%;
     }
 }

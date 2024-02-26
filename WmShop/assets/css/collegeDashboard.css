@@ -296,6 +296,11 @@ body{
     color: white;
 }
 
+.image8{
+    height: 5rem;
+    width: 8rem;
+}
+
 /*Cellphone*/
 @media only screen and (max-width: 600px){
     table{
