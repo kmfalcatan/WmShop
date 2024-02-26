@@ -213,6 +213,11 @@ body{
     .orderContainer{
         gap: 0.5rem;
     }
+
+    .subContainer1{
+        height: 12.2rem;
+        outline: red dashed 1px;
+    }
 }
 
 
@@ -252,5 +257,10 @@ body{
 
     .subStatusContainer{
         width: 100%;
+    }
+
+    .subContainer1{
+        height: 12.2rem;
+        outline: red dashed 1px;
     }
 }

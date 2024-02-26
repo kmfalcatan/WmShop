@@ -43,6 +43,7 @@ body{
 
 .uploadButton10{
     color: transparent;
+    margin-left: 38%;
 }
 
 .uploadImage10{
@@ -239,5 +240,10 @@ body{
 
     .editButtonContainer10{
         width: 30rem;
+    }
+    
+    .uploadButton10{
+        color: transparent;
+        margin-left: 34%;
     }
 }

@@ -15,7 +15,7 @@ toggleElements.forEach(function(container) {
 
 
 const header = document.querySelector('.menubarContainer');
-const navbar = document.querySelector('.sideNavBarContainer');
+const navbar = document.querySelector('.sideNavBarContainer, .sideNavBarContainer1');
 
 header.addEventListener('click', function(){
     if(navbar.classList === 'fadeIn'){
