@@ -14,7 +14,7 @@ include('../function/collegeDashboad.php');
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Document</title>
 
-    <link rel='stylesheet' href='../assets/css/collegeDashboard.css'>
+    <link rel='stylesheet' href='../assets/css/dashboard.css'>
 </head>
 <body>
     <div class='container1'>

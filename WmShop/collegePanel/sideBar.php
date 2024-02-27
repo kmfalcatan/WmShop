@@ -1,59 +1,46 @@
 <div class='sideNavBarContainer1'>
-                <div class='sideNavBar1'>
+                <div class='sideNavBar'>
                     <div class='subSideNavBar'>
-                        <a class='profile' href='../collegePanel/orders.php'>
-                            Orders
+                        <a class='profile' href='../collegePanel/orders.html'>
+                            Dashboard
                         </a>
                     </div>
-        
-                    <div class='image2'>
-                        <img class='image3' src='../assets/img/th-removebg-preview.png' alt=''>
-                        <img class='image5' src='../assets/img/plus-circle.png' alt=''>
+                </div>
+
+                <div class='sideNavBar'>
+                    <div class='subSideNavBar'>
+                        <a class='profile' href='../collegePanel/orders.html'>
+                            Orders
+                        </a>
                     </div>
                 </div>
         
                 <div class='sideNavBar'>
                         <div class='subSideNavBar'>
-                            <a class='profile' href='../collegePanel/collegeDashboard.php'>
+                            <a class='profile' href='../collegePanel/collegeDashboard.html'>
                                 Inventory
                             </a>
                         </div>
-        
-                    <div class='image2'>
-                        <img class='image3' src='../assets/img/file-text-circle.png' alt=''>
-                    </div>
                 </div>
                 <div class='sideNavBar'>
                     <div class='subSideNavBar'>
-                        <a class='profile' href='../collegePanel/additem.php'>
+                        <a class='profile' href='../collegePanel/additem.html'>
                             Add item
                         </a>
                     </div>
-        
-                    <div class='image2'>
-                        <img class='image3' src='../assets/img/person-circle.png' alt=''>
+                </div>
+                <div class='sideNavBar'>
+                    <div class='subSideNavBar'>
+                        <a class='profile' href='../collegePanel/transaction.html'>
+                            Transaction
+                        </a>
                     </div>
                 </div>
                 <div class='sideNavBar'>
                     <div class='subSideNavBar'>
-                        <a class='profile' href='../collegePanel/transaction.php'>
-                            Transaction
-                        </a>
-                    </div>
-        
-                    <div class='image2'>
-                        <img class='image4' src='../assets/img/about-us-icon-3.jpg' alt=''>
-                    </div>
-                </div>
-                <div class='sideNavBar2'>
-                    <div class='subSideNavBar'>
-                        <a class='profile' href='../index.php'>
+                        <a class='profile' href='../index.html'>
                             Log out
                         </a>
-                    </div>
-        
-                    <div class='image2'>
-                        <img class='image3' src='../assets/img/vector-settings-icon-removebg-preview.png' alt=''>
                     </div>
                 </div>
             </div>

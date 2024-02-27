@@ -25,7 +25,8 @@
     width: 90%;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: rgba(255, 250, 250, 0.582);
+    background-color: rgb(240, 240, 240);
+    border: solid red 1px;
     overflow: auto;
 }
 
