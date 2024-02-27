@@ -4,21 +4,21 @@
 }
 
 body{
-    background: linear-gradient(to right, rgb(255,148,148), white);
+    background-color: snow;
     font-family: system-ui, -apple-system;
 }
 
 .headerContainer{
-    height: 4.5rem;
+    height: 4rem;
+    background-color: rgb(252, 84, 84);
 }
 
 .subHeaderContainer{
-    height: 4.5rem;
+    height: 4rem;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: solid rgb(248, 45, 45) 1px;
 }
 
 .imageContainer{
@@ -39,7 +39,7 @@ body{
 
 .nameContainer{
     height: 100%;
-    width: 14rem;
+    width: 5rem;
 }
 
 .nameContainer p{
@@ -115,7 +115,7 @@ body{
 }
 
 .sideNavBarContainer{
-    height: 23em;
+    height: 25.2em;
     width:  12.5rem;
     position: fixed;
     right: -12.5rem;
@@ -124,13 +124,12 @@ body{
 }
 
 .sideNavBarContainer1{
-    height: 12.8em;
+    height: 15em;
     width:  12.5rem;
     position: fixed;
     right: -12.5rem;
     background-color: snow;
     z-index: 1;
-    border-radius: 0 0 1rem 1rem;
 }
 
 .fadeIn{
@@ -189,7 +188,9 @@ body{
 }
 
 .image{
-    height: 3.7rem;
+    height: 3rem;
+    border-radius: 5rem;
+    background-color: snow;
 }
 
 .companyName{
@@ -281,7 +282,7 @@ body{
 .tableContainer{
     height: 71%;
     width: 90%;
-    background-color: snow;
+    background-color: rgb(240, 240, 240);
     overflow-x: auto;
     border-radius: 0.5rem;
 }
@@ -355,13 +356,14 @@ body{
         align-items: center;
         font-weight: bold;
         font-size: 1.5rem;
+        color: snow;
     }
 
     .nameContainer{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 12rem;
+        width: 5rem;
         margin-left: 1rem;
         font-weight: bold;
         font-size: 1.3rem;
@@ -390,7 +392,7 @@ body{
     .tableContainer{
         height: 71%;
         width: 90%;
-        background-color: snow;
+        background-color: rgb(240, 240, 240);
         overflow-x: auto;
         border-radius: 0.5rem;
     }
@@ -441,9 +443,9 @@ body{
         display: block;
     }
 
-    .menubarContainer{
+    /*.menubarContainer{
         display: none;
-    }
+    }*/
 
     .companyName{
         display: block;
@@ -455,10 +457,11 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 18rem;
+        width: 5rem;
         margin-left: 1rem;
         font-weight: bold;
         font-size: 1.5rem;
+        color: snow;
     }
 
     .adminName{
@@ -478,14 +481,20 @@ body{
         width: 4rem;
     }
 
-    .sideNavBarContainer{
-        height: 29rem;
+    /*.sideNavBarContainer{
+        height: 2rem;
+        width: 100%;
         position: absolute;
-        left: -9.7rem;
-        top: 18%;
-        border-radius: 0rem 1rem 1rem 0rem;
         transition: all 0.5s;
         text-align: center;
+        right: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(252, 84, 84);
     }
 
     .sideNavBarContainer1{
@@ -496,9 +505,9 @@ body{
         border-radius: 0rem 1rem 1rem 0rem;
         transition: all 0.5s;
         text-align: center;
-    }
+    }*/
 
-    .sideNavBarContainer:hover{
+    /*.sideNavBarContainer:hover{
         position: absolute;
         left: 0;
     }
@@ -509,12 +518,17 @@ body{
     }
 
     .subSideNavBar{
-        height: 100%;
-        width: 10rem;
+        height: 2rem;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: snow;
     }
+
+    .profile{
+        color: snow;
+    }*/
 
     .image2{
         height: 100%;
@@ -544,13 +558,13 @@ body{
     .tableContainer{
         height: 84%;
         width: 90%;
-        background-color: snow;
+        background-color: rgb(240, 240, 240);
         overflow-x: auto;
         border-radius: 0.5rem;
         border: solid 1px rgb(248, 45, 45);
     }
 
-    .sideNavBar1{
+    /*.sideNavBar1{
         border-top-right-radius: 1rem;
         height: 3.1rem;
         display: flex;
@@ -564,8 +578,11 @@ body{
     }
 
     .sideNavBar{
-        height: 3.1rem;
-    }
+        height: 1.9rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: snow;
+    }*/
 
     table{
         border-collapse: collapse;
@@ -607,9 +624,9 @@ body{
         font-weight: bold;
     }
 
-    .menubarContainer{
+    /*.menubarContainer{
         display: none;
-    }
+    }*/
 
     .companyName{
         display: block;
@@ -617,7 +634,8 @@ body{
         align-items: center;
         font-size: 2rem;
         font-weight: bold;
-        width: 20rem;
+        width: 5rem;
+        color: snow;
     }
 
     .nameContainer{
@@ -636,7 +654,7 @@ body{
         width: 4rem;
     }
 
-    .sideNavBarContainer{
+    /*.sideNavBarContainer{
         height: 29rem;
         position: absolute;
         left: -9.7rem;
@@ -677,7 +695,7 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    }*/
 
     .image2{
         height: 100%;
@@ -711,13 +729,13 @@ body{
     .tableContainer{
         height: 84%;
         width: 90%;
-        background-color: snow;
+        background-color: rgb(240, 240, 240);
         overflow-x: auto;
         border-radius: 0.5rem;
         border: solid 1px rgb(248, 45, 45);
     }
 
-    .sideNavBar1{
+    /*.sideNavBar1{
         border-top-right-radius: 1rem;
         height: 3.1rem;
     }
@@ -729,7 +747,7 @@ body{
 
     .sideNavBar{
         height: 3.1rem;
-    }
+    }*/
 
     table{
         border-collapse: collapse;

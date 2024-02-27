@@ -4,7 +4,7 @@
 }
 
 body{
-    background: linear-gradient(to right, rgb(255,148,148), white);
+    background-color: snow;
     font-family: system-ui, -apple-system;
 }
 
@@ -21,8 +21,8 @@ body{
     width: 90%;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: rgba(255, 250, 250, 0.582);
-    border: solid rgb(204, 204, 204) 1px;
+    background-color: rgb(240, 240, 240);
+    border: solid red 1px;
     position: relative;
     overflow: auto;
 }
@@ -216,7 +216,6 @@ body{
 
     .subContainer1{
         height: 12.2rem;
-        outline: red dashed 1px;
     }
 }
 
@@ -261,6 +260,5 @@ body{
 
     .subContainer1{
         height: 12.2rem;
-        outline: red dashed 1px;
     }
 }
