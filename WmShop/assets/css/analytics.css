@@ -1,0 +1,120 @@
+.container2 {
+  outline: red dashed 1px;
+  height: 92.5vh;
+  width: 100%;
+}
+
+.itemContainer {
+  outline: red dashed 1px;
+  height: 8rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subItemContainer {
+  outline: red dashed 1px;
+  height: 100%; /* Adjust the height */
+  width: 90%;
+  border-radius: 1rem;
+  background-color: rgb(240, 240, 240);
+  overflow: auto; /* Set overflow property here */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Adjust as needed */
+  flex-direction: row;
+  column-gap: 0.5rem;
+}
+
+.item {
+  outline: red dashed 1px;
+  height: 7.5rem; /* Adjust the height */
+  width: 8rem;
+  border-radius: 1rem;
+  background-color: snow;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.item:active {
+  transform: scale(1);
+}
+
+.imageContainer3 {
+  outline: red dashed 1px;
+  height: 5rem;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.image10 {
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+.itemName {
+  outline: red dashed 1px;
+  height: 3rem;
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.graphContainer{
+  outline: red dashed 1px;
+  height: 40rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.subGraphContainer{
+  outline: red dashed 1px;
+  height: 19rem;
+  width: 90%;
+  border-radius: 1rem;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+}
+
+.subGraphContainer1{
+  outline: red dashed 1px;
+  height: 19rem;
+  width: 90%;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: center;
+}
+
+/*laptop*/
+@media only screen and (min-width: 1025px){
+  .graphContainer{
+    display: flex;
+    flex-direction: row;
+    height: 19rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .subItemContainer{
+    width: 100%;
+  }
+
+  .itemContainer{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
