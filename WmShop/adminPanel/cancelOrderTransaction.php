@@ -47,7 +47,7 @@
     </div>
         <div class='filterContainer1'>
             <div class='subFilterContainer1'>
-                <a href='../adminPanel/cancelOrderTransaction.php' class='filter1'><button class='filter1' onclick='changeColor(this)'>Cancel order</button></a>
+                <a href='../adminPanel/transaction.php' class='filter1'><button class='filter1' onclick='changeColor(this)'>Complete order</button></a>
             </div>
         </div>
         <div class='container'>
@@ -72,7 +72,7 @@
                     <?php
                         include('../ConnectionDB/connection.php');
 
-                        $sql = "SELECT * FROM Transaction";
+                        $sql = "SELECT * FROM CancelOrderTransaction";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {

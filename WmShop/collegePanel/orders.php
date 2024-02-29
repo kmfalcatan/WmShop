@@ -71,7 +71,7 @@ include('../ConnectionDB/connection.php');
             $Status = $_POST['Status'];
             $MyOrderID = $_POST['MyOrderID'];
 
-            if ($Status == 'Order complete' || $Status == 'Cancel order') {
+            if ($Status == 'Order complete') {
                 // Fetch order details
                 $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = $MyOrderID";
                 $orderResult = $conn->query($orderSql);
@@ -80,6 +80,25 @@ include('../ConnectionDB/connection.php');
                     $orderRow = $orderResult->fetch_assoc();
 
                     $insertSql = "INSERT INTO CollegeTransaction (CollegeID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
+                          VALUES ($CollegeID, '" . $orderRow['UserName'] . "', '" . $orderRow['ItemName'] . "', " . $orderRow['Quantity'] . ", " . $orderRow['TotalPrice'] . ", '" . $orderRow['Size'] . "', '" . $orderRow['ItemImage'] . "', '" . $orderRow['Description'] . "', '$Status', NOW())";
+
+                    if ($conn->query($insertSql) === true) {
+                        $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = $MyOrderID";
+                        if ($conn->query($deleteSql) !== true) {
+                            echo "Error deleting from my_order: " . $conn->error;
+                        }
+                    } else {
+                        echo "Error inserting into history: " . $conn->error;
+                    }
+                }
+            } elseif($Status == 'Cancel order'){
+                $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = $MyOrderID";
+                $orderResult = $conn->query($orderSql);
+
+                if ($orderResult->num_rows > 0) {
+                    $orderRow = $orderResult->fetch_assoc();
+
+                    $insertSql = "INSERT INTO CollegeCancelOrderTransaction (CollegeID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
                           VALUES ($CollegeID, '" . $orderRow['UserName'] . "', '" . $orderRow['ItemName'] . "', " . $orderRow['Quantity'] . ", " . $orderRow['TotalPrice'] . ", '" . $orderRow['Size'] . "', '" . $orderRow['ItemImage'] . "', '" . $orderRow['Description'] . "', '$Status', NOW())";
 
                     if ($conn->query($insertSql) === true) {
@@ -115,7 +134,7 @@ include('../ConnectionDB/connection.php');
 
                     echo "<div class='subItemContainer'>
                                         <div class='imageContainer2'>
-                                            <a class='subImageContainer2' href='../adminPanel/viewOrders.php'>
+                                            <a class='subImageContainer2' href='../collegePanel/viewOrders.php?MyOrderID=$MyOrderID'>
                                                 <div class='subImageContainer2'>
                                                     <img class='image6' src='$ItemImage' alt=''>
                                                 </div>

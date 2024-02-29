@@ -99,16 +99,41 @@
                         </div>
 
                         <div class='subInfoContainer10'>
-                            <select name='College' class='inputInfo10'>
-                                <option value=''>Choose college</option>
-                                <option value='College of Computing Studies'>College of Computing Studies</option>
-                            </select>
+                            <?php
+                            // Assuming you have a connection to the database in your connection.php file
+                            include('../ConnectionDB/connection.php');
+
+                            // Check if CollegeID is set in the session
+                            if (isset($_SESSION['CollegeID'])) {
+                                $CollegeID = $_SESSION['CollegeID'];
+
+                                // Assuming you have a table named 'Colleges' with columns 'CollegeID' and 'College'
+                                $sql = "SELECT CollegeID, College FROM College WHERE CollegeID = $CollegeID";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $College = $row['College'];
+                                        echo "<input type='text' class='inputInfo10' name='College' value='$College' readonly>";
+                                    }
+                                }
+                            }
+
+                            // Close the database connection
+                            $conn->close();
+                            ?>
                         </div>
+
 
                         <div class='subInfoContainer10'>
                             <select name='TypesOfItem' class='inputInfo10'>
                                 <option value=''>Types of item</option>
                                 <option value='Uniform'>Uniform</option>
+                                <option value="Lanyard">Lanyard</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Department T-Shirt">Department T-Shirt</option>
+                                <option value="Department Jacket">Department Jacket</option>
+                                <option value="Department Polo Shirt">Department Polo Shirt</option>
                             </select>
                         </div>
 

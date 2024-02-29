@@ -14,7 +14,7 @@
             <div class='subHeaderContainer'>
                 <div class='imageContainer'>
                     <div class='subImageContainer'>
-                        <a href='../userPanel/userhomePage.php'>
+                        <a href='../userPanel/poloShirt.php'>
                             <img class='image6' src='../assets/img/chevron-left (1).png' alt=''>
                         </a>
                     </div>
@@ -44,9 +44,9 @@
     </div>
     <?php
 include('../ConnectionDB/connection.php');
-            if (isset($_GET['WmsuItemID'])) {
-                $WmsuItemID = $_GET['WmsuItemID'];
-                $sql = "SELECT * FROM WmsuItem WHERE WmsuItemID = $WmsuItemID";
+            if (isset($_GET['CollegeItemID'])) {
+                $CollegeItemID = $_GET['CollegeItemID'];
+                $sql = "SELECT * FROM CollegeItem WHERE CollegeItemID = $CollegeItemID";
                 $result = $conn->query($sql);
                 
                 if ($result->num_rows > 0) {
@@ -56,7 +56,7 @@ include('../ConnectionDB/connection.php');
                         $Price = $row['Price'];
                         $ItemImage = $row['ItemImage'];
                         $Description = $row['Description']; 
-                        $WmsuItemID = $row['WmsuItemID'];
+                        $CollegeItemID = $row['CollegeItemID'];
     echo"<div class='container2'>
         <div class='subContainer2'>
             <div class='itemImageContainer'>
@@ -149,8 +149,8 @@ include('../ConnectionDB/connection.php');
         if (isset($_POST['addToCart'])) {
             $quantityToAdd = $_POST['Quantity'];
             $Size = $_POST['Size'];
-            $insertCartSql = "INSERT INTO Cart (itemWmsuID, ItemName, Quantity, Price, ItemImage, Description, StudentID, Size) 
-                              VALUES ('$WmsuItemID', '$ItemName', '$quantityToAdd', '$Price', '$ItemImage', '$Description', '$StudentId', '$Size')";
+            $insertCartSql = "INSERT INTO Cart (CollegeItemID, ItemName, Quantity, Price, ItemImage, Description, StudentID, Size) 
+                              VALUES ('$CollegeItemID', '$ItemName', '$quantityToAdd', '$Price', '$ItemImage', '$Description', '$StudentId', '$Size')";
             $conn->query($insertCartSql);
 
 

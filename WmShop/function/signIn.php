@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $collegeRow = $resultColleges->fetch_assoc();
         $_SESSION['Role'] = 'College';
         $_SESSION['CollegeID'] = $collegeRow['CollegeID'];
+        $_SESSION['College'] = $collegeRow['College'];
         header("Location: ../collegePanel/collegeDashboard.php");
         exit();
     }

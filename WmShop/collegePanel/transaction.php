@@ -58,7 +58,11 @@ include('../ConnectionDB/connection.php');
             <?php include('sideBar.php'); ?>
         </div>
     </div>
-
+    <div class='filterContainer1'>
+        <div class='subFilterContainer1'>
+            <a href='../collegePanel/cancelOrderTransaction.php' class='filter1'><button class='filter1' onclick='changeColor(this)'>Cancel order</button></a>
+        </div>
+    </div>
         <div class='container'>
            <div class='searchBarContainer'>
                 <input class='searchBar' type='text' placeholder='Search...' id='searchInput' oninput='filterItems()'>
@@ -118,5 +122,6 @@ include('../ConnectionDB/connection.php');
 
     <script src='../assets/js/accountAppr.js'></script>
     <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>
