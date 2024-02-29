@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
     $MyOrderID = $_POST['MyOrderID'];
     $Status = $_POST['Status'];
 
-    if ($Status == 'Order complete' || $Status == 'Cancel order') {
+    if ($Status == 'Order complete') {
         // Fetch order details
         $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
         $stmtOrder = $conn->prepare($orderSql);
@@ -69,6 +69,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
             $orderRow = $orderResult->fetch_assoc();
 
             $insertSql = "INSERT INTO Transaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
+                          VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+            $stmtInsert = $conn->prepare($insertSql);
+            $stmtInsert->bind_param("ssiiisss", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status);
+
+            if ($stmtInsert->execute()) {
+                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = ?";
+                $stmtDelete = $conn->prepare($deleteSql);
+                $stmtDelete->bind_param("i", $MyOrderID);
+
+                if ($stmtDelete->execute() !== true) {
+                    echo "Error deleting from my_order: " . $stmtDelete->error;
+                }
+            } else {
+                echo "Error inserting into history: " . $stmtInsert->error;
+            }
+        }
+
+        $stmtOrder->close();
+        $stmtInsert->close();
+        $stmtDelete->close();
+    } elseif($Status == 'Cancel order'){
+        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
+        $stmtOrder = $conn->prepare($orderSql);
+        $stmtOrder->bind_param("i", $MyOrderID);
+        $stmtOrder->execute();
+        $orderResult = $stmtOrder->get_result();
+
+        if ($orderResult->num_rows > 0) {
+            $orderRow = $orderResult->fetch_assoc();
+
+            $insertSql = "INSERT INTO CancelOrderTransaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
                           VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
             $stmtInsert = $conn->prepare($insertSql);
             $stmtInsert->bind_param("ssiiisss", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status);
@@ -169,5 +200,6 @@ $conn->close();
 </div>
 </div>
 
+<script src="../assets/js/dashboard.js"></script>
 </body>
 </html>

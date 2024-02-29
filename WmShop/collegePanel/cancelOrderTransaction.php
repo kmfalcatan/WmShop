@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Check if CollegeID is not set, redirect to login page
+if (!isset($_SESSION['CollegeID'])) {
+    header("Location: ../authentication/signIn.php");
+    exit;
+}
+
+// Rest of your existing code goes here
+include('../ConnectionDB/connection.php');
+// ... (rest of the code)
+?>
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -41,13 +54,13 @@
                     </div>
                 </div>
             </div>
-
-            <?php include('sidebar.php'); ?>
+            
+            <?php include('sideBar.php'); ?>
         </div>
     </div>
         <div class='filterContainer1'>
             <div class='subFilterContainer1'>
-                <a href='../adminPanel/cancelOrderTransaction.php' class='filter1'><button class='filter1' onclick='changeColor(this)'>Cancel order</button></a>
+                <a href='../collegePanel/transaction.php' class='filter1'><button class='filter1' onclick='changeColor(this)'>Complete order</button></a>
             </div>
         </div>
         <div class='container'>
@@ -72,17 +85,21 @@
                     <?php
                         include('../ConnectionDB/connection.php');
 
-                        $sql = "SELECT * FROM Transaction";
-                        $result = $conn->query($sql);
+              if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                if (isset($_SESSION['CollegeID'])) {
+                    $CollegeID = $_SESSION['CollegeID'];
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $userName = $row['UserName'];
-                                $itemImage = $row['ItemImage'];
-                                $itemName = $row['ItemName'];
-                                $quantity = $row['Quantity'];
-                                $size = $row['Size'];
-                                $price = $row['TotalPrice'];
+                    $sql = "SELECT * FROM CollegeCancelOrderTransaction WHERE CollegeID = $CollegeID";
+                    $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $userName = $row['UserName'];
+                    $itemImage = $row['ItemImage'];
+                    $itemName = $row['ItemName'];
+                    $quantity = $row['Quantity'];
+                    $size = $row['Size'];
+                    $price = $row['TotalPrice'];
                         echo"<tr>
                             <td>" .$userName. "</td>";
                             echo"<td>" .$itemImage. "</td>";
@@ -93,6 +110,8 @@
                         echo"</tr>";
                     }
                   }
+                }
+              }
               $conn->close();
               ?>
                     </tbody>

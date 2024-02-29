@@ -22,11 +22,9 @@ include('../ConnectionDB/connection.php');
             <div class='subHeaderContainer'>
                 <div class='imageContainer'>
                     <div class='subImageContainer'>
-                        <img class='image' src='../assets/img/wmsuLogo.png' alt=''>
-                    </div>
-
-                    <div class='nameContainer'>
-                        <p class='companyName'>WmShop</p>
+                        <a href='../userPanel/userhomePage.php'>
+                            <img class='image' src='../assets/img/chevron-left (1).png' alt=''>
+                        </a>
                     </div>
                 </div>
 
@@ -66,44 +64,7 @@ include('../ConnectionDB/connection.php');
         <input class='searchBar' type='text' placeholder='Search item..' id='searchInput' oninput='filterItems()'>
     </div>
 
-    <div class='filterContainer'>
-        <div class='subFilterContainer'>
-            <a href='../userPanel/filterItem.php'>
-                <img class='filterImage' src='../assets/img/th-removebg-preview.png' alt=''>
-            </a>
-        </div>
-
-        <div class='subFilterContainer'>
-            <a href='../userPanel/jacket.php'>
-                <img class='filterImage' src='../assets/img/sports_jacket-512.png' alt=''>
-            </a>
-        </div>
-
-        <div class='subFilterContainer'>
-            <a href='../userPanel/t-shirt.php'>
-                <img class='filterImage' src='../assets/img/6148418.png' alt=''>
-            </a>
-        </div>
-
-        <div class='subFilterContainer'>
-            <a href='../userPanel/lanyard.php'>
-                <img class='filterImage' src='../assets/img/pngtree-lanyard-design-vector-id-card-template-png-image_7328968.png' alt=''>
-            </a>
-        </div>
-
-        <div class='subFilterContainer'>
-            <a href='../userPanel/poloShirt.php'>
-                <img class='filterImage' src='../assets/img/2525520.png' alt=''>
-            </a>
-        </div>  
-
-        <div class='subFilterContainer'>
-            <a href='../userPanel/accessories.php'>
-                <img class='filterImage' src='../assets/img/vector-men-and-women-clothes-accessories-icons-removebg-preview.png' alt=''>
-            </a>
-        </div>
-    </div>
-
+    <div class='container'  id='itemContainer'>
     <?php
 include('../ConnectionDB/connection.php');
 
@@ -112,11 +73,11 @@ if (isset($_SESSION['College'])) {
     $college = $_SESSION['College'];
 
     // Retrieve data from WmsuItem table
-    $wmsuItemSql = "SELECT * FROM WmsuItem";
+    $wmsuItemSql = "SELECT * FROM WmsuItem WHERE TypesOfItem = 'Accessories'";
     $wmsuItemResult = $conn->query($wmsuItemSql);
 
     // Retrieve data from CollegeItem table for the logged-in college
-    $collegeItemSql = "SELECT * FROM CollegeItem WHERE College = '$college'";
+    $collegeItemSql = "SELECT * FROM CollegeItem WHERE College = '$college' AND TypesOfItem = 'Accessories'";
     $collegeItemResult = $conn->query($collegeItemSql);
 
     echo "<div class='container' id='itemContainer'>";
@@ -185,7 +146,7 @@ if (isset($_SESSION['College'])) {
             echo "</div>";
 
             echo "<div class='viewButtonContainer'>";
-            echo "<a href='../userPanel/CollegeViewItem.php?CollegeItemID=$CollegeItemID'>";
+            echo "<a href='../userPanel/viewAccessories.php?CollegeItemID=$CollegeItemID'>";
             echo "<button class='viewButton'>View</button>";
             echo "</a>";
             echo "</div>";
@@ -196,7 +157,7 @@ if (isset($_SESSION['College'])) {
 
             echo "<div class='viewIconContainer'>";
             echo "<div class='subViewIconContainer'>";
-            echo "<a href='../userPanel/CollegeViewItem.php?CollegeItemID=$CollegeItemID'>";
+            echo "<a href='../userPanel/viewAccessories.php?CollegeItemID=$CollegeItemID'>";
             echo "<div class='viewIcon'>";
             echo "<img class='icon' src='../assets/img/view-icon-symbol-sign-vector-removebg-preview.png' alt=''>";
             echo "</div>";
@@ -214,7 +175,6 @@ if (isset($_SESSION['College'])) {
 
 $conn->close();
 ?>
-
     </div>
     <script src='../assets/js/dashboard.js'></script>
     <script src='../assets/js/userhomePage.js'></script>
