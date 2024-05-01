@@ -101,6 +101,24 @@
   height: 18rem;
 }
 
+.yearContainer{
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.year{
+  height: 2.5rem;
+  width: 10rem;
+  margin-left: 1rem;
+  color: snow;
+  background-color: rgb(255,0,0);
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
 /*laptop*/
 @media only screen and (min-width: 1025px){
   .graphContainer{
