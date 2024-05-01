@@ -25,12 +25,6 @@
             </div>
 
             <div class='profileContainer'>
-                <a href='../adminPanel/notification.php'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-                </a>
-
                 <a href='../adminPanel/message.php'>
                     <div class='subProfileContainer'>
                         <img class='image1' src='../assets/img/chat-lines.png' alt=''>
@@ -67,10 +61,6 @@ if ($result->num_rows > 0) {
       echo"<div class='item'>
           <div class='imageContainer3'>
             <img class='image10' src='../assets/img/" .$itemImage. "' alt=''>
-          </div>";
-
-          echo"<div class='itemName'>
-            <p>" .$itemName. "</p>
           </div>
       </div>";
     }
@@ -114,7 +104,7 @@ $itemNames = [];
 $quantities = [];
 $totalPrices = [];
 $incomes = [];
-$totalIncome = 0; // Initialize total income
+$totalIncome = 0;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -122,11 +112,9 @@ if ($result->num_rows > 0) {
         $quantities[] = $row['TotalQuantity'];
         $totalPrices[] = $row['TotalPrice'];
 
-        // Calculate 5% income for the current row
         $income = 0.05 * $row['TotalPrice'];
         $incomes[] = $income;
 
-        // Accumulate income to the total
         $totalIncome += $income;
 
         echo "<tr>
@@ -178,7 +166,6 @@ $conn->close();
                             <td>$totalSale</td>
                         </tr>";
 
-                    // Store data for the chart
                     $itemNames[] = $itemName;
                     $totalSales[] = $totalSale;
                 }
@@ -194,10 +181,8 @@ $conn->close();
 
 <script src="../assets/js/dashboard.js"></script>
 <script>
-// Get the context of the canvas element
         var ctx = document.getElementById('barGraph').getContext('2d');
 
-        // Initialize the bar graph
         var barGraph = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -221,10 +206,8 @@ $conn->close();
 </script>
 
 <script>
-        // Get the context of the canvas element
         var ctx = document.getElementById('pieGraph').getContext('2d');
 
-        // Initialize the pie graph
         var pieGraph = new Chart(ctx, {
             type: 'pie',
             data: {

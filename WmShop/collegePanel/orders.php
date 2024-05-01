@@ -1,15 +1,13 @@
 <?php
 session_start();
 
-// Check if CollegeID is not set, redirect to login page
 if (!isset($_SESSION['CollegeID'])) {
     header("Location: ../authentication/signIn.php");
     exit;
 }
 
-// Rest of your existing code goes here
 include('../ConnectionDB/connection.php');
-// ... (rest of the code)
+
 ?>
 
 <!DOCTYPE html>
@@ -37,13 +35,11 @@ include('../ConnectionDB/connection.php');
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../collegePanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -60,104 +56,83 @@ include('../ConnectionDB/connection.php');
     </div>
 
     <div class='container2'>
-                            <div class='subContainer2'>
-                                <div class='itemContainer'>
-                                    
-    <?php
-        include('../ConnectionDB/connection.php');
+        <div class='subContainer2'>
+            <div class='itemContainer'>
+                <?php
+                include('../ConnectionDB/connection.php');
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
-            $CollegeID = $_SESSION['CollegeID'];
-            $Status = $_POST['Status'];
-            $MyOrderID = $_POST['MyOrderID'];
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
+                    $CollegeID = $_SESSION['CollegeID'];
+                    $Status = $_POST['Status'];
+                    $MyOrderID = $_POST['MyOrderID'];
 
-            if ($Status == 'Order complete') {
-                // Fetch order details
-                $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = $MyOrderID";
-                $orderResult = $conn->query($orderSql);
+                    if ($Status == 'Order complete' || $Status == 'Cancel order') {
+                        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = $MyOrderID";
+                        $orderResult = $conn->query($orderSql);
 
-                if ($orderResult->num_rows > 0) {
-                    $orderRow = $orderResult->fetch_assoc();
+                        if ($orderResult->num_rows > 0) {
+                            $orderRow = $orderResult->fetch_assoc();
 
-                    $insertSql = "INSERT INTO CollegeTransaction (CollegeID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
-                          VALUES ($CollegeID, '" . $orderRow['UserName'] . "', '" . $orderRow['ItemName'] . "', " . $orderRow['Quantity'] . ", " . $orderRow['TotalPrice'] . ", '" . $orderRow['Size'] . "', '" . $orderRow['ItemImage'] . "', '" . $orderRow['Description'] . "', '$Status', NOW())";
+                            $insertSql = "INSERT INTO " . ($Status == 'Order complete' ? "CollegeTransaction" : "CollegeCancelOrderTransaction") . " (CollegeID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
+                                  VALUES ($CollegeID, '" . $orderRow['UserName'] . "', '" . $orderRow['ItemName'] . "', " . $orderRow['Quantity'] . ", " . $orderRow['TotalPrice'] . ", '" . $orderRow['Size'] . "', '" . $orderRow['ItemImage'] . "', '" . $orderRow['Description'] . "', '$Status', NOW())";
 
-                    if ($conn->query($insertSql) === true) {
-                        $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = $MyOrderID";
-                        if ($conn->query($deleteSql) !== true) {
-                            echo "Error deleting from my_order: " . $conn->error;
+                            if ($conn->query($insertSql) === true) {
+                                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = $MyOrderID";
+                                if ($conn->query($deleteSql) !== true) {
+                                    echo "<div class='alert'>Error deleting from my_order: " . $conn->error . "</div>";
+                                }
+                            } else {
+                                echo "<div class='alert'>Error inserting into history: " . $conn->error . "</div>";
+                            }
                         }
                     } else {
-                        echo "Error inserting into history: " . $conn->error;
-                    }
-                }
-            } elseif($Status == 'Cancel order'){
-                $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = $MyOrderID";
-                $orderResult = $conn->query($orderSql);
+                        $updateSql = "UPDATE MyOrder SET Status = '$Status' WHERE MyOrderID = $MyOrderID";
 
-                if ($orderResult->num_rows > 0) {
-                    $orderRow = $orderResult->fetch_assoc();
-
-                    $insertSql = "INSERT INTO CollegeCancelOrderTransaction (CollegeID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
-                          VALUES ($CollegeID, '" . $orderRow['UserName'] . "', '" . $orderRow['ItemName'] . "', " . $orderRow['Quantity'] . ", " . $orderRow['TotalPrice'] . ", '" . $orderRow['Size'] . "', '" . $orderRow['ItemImage'] . "', '" . $orderRow['Description'] . "', '$Status', NOW())";
-
-                    if ($conn->query($insertSql) === true) {
-                        $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = $MyOrderID";
-                        if ($conn->query($deleteSql) !== true) {
-                            echo "Error deleting from my_order: " . $conn->error;
+                        if ($conn->query($updateSql) !== true) {
+                            echo "<div class='alert'>Error updating Status: " . $conn->error . "</div>";
                         }
-                    } else {
-                        echo "Error inserting into history: " . $conn->error;
                     }
                 }
-            } else {
-                $updateSql = "UPDATE MyOrder SET Status = '$Status' WHERE MyOrderID = $MyOrderID";
 
-                if ($conn->query($updateSql) !== true) {
-                    echo "Error updating Status: " . $conn->error;
-                }
-            }
-        }
+                if (isset($_SESSION['CollegeID'])) {
+                    $CollegeID = $_SESSION['CollegeID'];
+                    $orderSql = "SELECT * FROM MyOrder WHERE CollegeID = $CollegeID";
+                    $orderResult = $conn->query($orderSql);
 
-        if (isset($_SESSION['CollegeID'])) {
-            $CollegeID = $_SESSION['CollegeID'];
-            $orderSql = "SELECT * FROM MyOrder WHERE CollegeID = $CollegeID";
-            $orderResult = $conn->query($orderSql);
+                    if ($orderResult->num_rows > 0) {
+                        while ($orderRow = $orderResult->fetch_assoc()) {
+                            $UserName = $orderRow['UserName'];
+                            $ItemImage = $orderRow['ItemImage'];
+                            $ItemName = $orderRow['ItemName'];
+                            $MyOrderID = $orderRow['MyOrderID'];
+                            $Status = $orderRow['Status'];
 
-            if ($orderResult->num_rows > 0) {
-                while ($orderRow = $orderResult->fetch_assoc()) {
-                    $UserName = $orderRow['UserName'];
-                    $ItemImage = $orderRow['ItemImage'];
-                    $ItemName = $orderRow['ItemName'];
-                    $MyOrderID = $orderRow['MyOrderID'];
-                    $Status = $orderRow['Status'];
+                            echo "<div class='subItemContainer'>
+                                    <div class='imageContainer2'>
+                                        <a class='subImageContainer2' href='../collegePanel/viewOrders.php?MyOrderID=$MyOrderID'>
+                                            <div class='subImageContainer2'>
+                                                <img class='image6' src='$ItemImage' alt=''>
+                                            </div>
+                                        </a>
+                                    </div>
 
-                    echo "<div class='subItemContainer'>
-                                        <div class='imageContainer2'>
-                                            <a class='subImageContainer2' href='../collegePanel/viewOrders.php?MyOrderID=$MyOrderID'>
-                                                <div class='subImageContainer2'>
-                                                    <img class='image6' src='$ItemImage' alt=''>
-                                                </div>
-                                            </a>
+                                    <div class='infoContainer'>
+                                        <div class='subInfoContainer'>
+                                            <p>$UserName</p>
                                         </div>
 
-                                        <div class='infoContainer'>
-                                            <div class='subInfoContainer'>
-                                                <p>$UserName</p>
-                                            </div>
-
-                                            <div class='subInfoContainer'>
-                                                <p>$ItemName</p>
-                                            </div>
-
-                                            <div class='subInfoContainer'>
-                                                <p>$Status</p>
-                                            </div>
+                                        <div class='subInfoContainer'>
+                                            <p>$ItemName</p>
                                         </div>
 
-                                        <div class='updateContainer'>
-                                            <form class='updateContainer' method='POST'>
-                                                <div class='subUpdateContainer'>
+                                        <div class='subInfoContainer'>
+                                            <p>$Status</p>
+                                        </div>
+                                    </div>
+
+                                    <div class='updateContainer'>
+                                        <form class='updateContainer' method='POST'>
+                                            <div class='subUpdateContainer'>
                                                 <input type='hidden' name='MyOrderID' value='$MyOrderID'>
                                                 <select class='update' name='Status'>
                                                     <option value='' " . ($Status == '' ? 'selected' : '') . ">Choose</option>
@@ -166,30 +141,28 @@ include('../ConnectionDB/connection.php');
                                                     <option value='Order complete' " . ($Status == 'Order complete' ? 'selected' : '') . ">Order complete</option>
                                                     <option value='Cancel order' " . ($Status == 'Cancel order' ? 'selected' : '') . ">Cancel order</option>
                                                 </select>
-                                                </div>
+                                            </div>
 
-                                                <div class='subUpdateContainer'>
-                                                    <button class='update' type='submit' name='updateStatus'>Update Status</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>";
+                                            <div class='subUpdateContainer'>
+                                                <button class='update' type='submit' name='updateStatus'>Update Status</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>";
+                        }
+                    } else {
+                        echo "<p>No orders found.</p>";
+                    }
+                } else {
+                    echo "<p>No seller session found.</p>";
                 }
-            } else {
-                echo "<p>No orders found.</p>";
-            }
-        } else {
-            echo "<p>No seller session found.</p>";
-            // Redirect or handle the case when CollegeID is not found in the session
-        }
 
-        $conn->close();
-    ?>
-    
+                $conn->close();
+                ?>
+            </div>
+        </div>
     </div>
-                            </div>
-                        </div>
 
-<script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>

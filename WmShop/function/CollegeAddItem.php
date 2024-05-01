@@ -1,12 +1,13 @@
 <?php
-session_start(); // Start the session
+session_start();
 include('../ConnectionDB/connection.php');
 
-$AdminID = '1'; // Assuming you still want to set AdminID to '1', you might adjust this based on your logic
+$AdminID = '1';
 
-// Check if the CollegeID session variable is set
 if (isset($_SESSION['CollegeID'])) {
-    $CollegeID = $_SESSION['CollegeID']; // Get CollegeID from the session
+    $CollegeID = $_SESSION['CollegeID'];
+    $CollegeName = $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'];
+    $Email = $_SESSION['Email'];
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $ItemImage = $_FILES['ItemImage']['name'];
         $ItemName = $_POST['ItemName'];
@@ -26,24 +27,25 @@ if (isset($_SESSION['CollegeID'])) {
         if ($fileType != 'jpg' && $fileType != 'jpeg' && $fileType != 'png') {
             echo"Only JPG, JPEG, or PNG files are allowed.";
         } else {
-            $target_directory = 'C:\Program1\xampp\htdocs\WmShop-main\WmShop\assets\img\uploadPicture_';
+            $target_directory = 'C:\xampp\htdocs\WmShop-mainF\WmShop\assets\img\uploadPicture_';
             $target_file = $target_directory . basename($ItemImage);
 
             if (move_uploaded_file($_FILES['ItemImage']['tmp_name'], $target_file)) {
-                $sql = "INSERT INTO PendingItem (AdminID, ItemName, Quantity, Price, Small, Meduim, Large, XL, XXL, XXXL, ItemImage, Description, TypesOfItem, College, CollegeID)
-                VALUES ('$AdminID', '$ItemName', '$Quantity', '$Price', '$Small', '$Meduim', '$Large', '$XL', '$XXL', '$XXXL', '$ItemImage', '$Description', '$TypesOfItem', '$College', '$CollegeID')";
+                $sql = "INSERT INTO PendingItem (AdminID, ItemName, Quantity, Price, Small, Meduim, Large, XL, XXL, XXXL, ItemImage, Description, TypesOfItem, College, CollegeID, Email, CollegeName)
+        VALUES ('$AdminID', '$ItemName', '$Quantity', '$Price', '$Small', '$Meduim', '$Large', '$XL', '$XXL', '$XXXL', '$ItemImage', '$Description', '$TypesOfItem', '$College', '$CollegeID', '$Email', '$CollegeName')";
+
                 
                 if ($conn->query($sql) === TRUE) {
-                    echo"Image uploaded successfully and data saved in the database.";
+                    echo "<script>alert('Your item has been successfully saved; just wait for the approval of the admin..');</script>";
                 } else {
-                    echo"Error: " . $sql . "<br>" . $conn->error;
+                    echo "<script>alert('Error: ');</script>" . $sql . "<br>" . $conn->error;
                 }
             } else {
-                echo"Failed to upload the image.";
+                echo "<script>alert('Failed to upload the image.');</script>";
             }
         }
     }
 } else {
-    echo"CollegeID not set. Please make sure the user is logged in.";
+    echo "<script>alert('CollegeID not set. Please make sure the user is logged in.');</script>";
 }
 ?>

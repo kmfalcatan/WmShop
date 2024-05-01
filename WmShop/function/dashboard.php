@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("location: ../adminPanel/dashboard.php");
                 exit;
             } else {
-                echo "Error deleting item: " . $conn->error;
+                echo "<script>alert('Error deleting item:');</script>";
             }
         } else {
-            echo "Item not found. Delete operation failed.";
+            echo "<script>alert('Item not found. Delete operation failed.');</script>";
         }
     }
 }

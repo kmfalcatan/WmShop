@@ -25,13 +25,11 @@
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../adminPanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -123,7 +121,8 @@
     </div>
 
     <script src='../assets/js/accountAppr.js'></script>
-    <script src="../assets/js//search.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
     <script>
     function confirmDelete() {
         return confirm('Are you sure you want to delete this user?');

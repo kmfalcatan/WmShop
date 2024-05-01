@@ -3,7 +3,6 @@ session_start();
 
 include('../ConnectionDB/connection.php');
 
-// ... (rest of your PHP code)
 
 ?>
 
@@ -22,7 +21,7 @@ include('../ConnectionDB/connection.php');
             <div class='subHeaderContainer'>
                 <div class='imageContainer'>
                     <div class='subImageContainer'>
-                        <img class='image' src='../assets/img/wmsuLogo.png' alt=''>
+                        <img class='image7' src='../assets/img/wmsuLogo.png' alt=''>
                     </div>
 
                     <div class='nameContainer'>
@@ -31,19 +30,13 @@ include('../ConnectionDB/connection.php');
                 </div>
 
                 <div class='profileContainer'>
-                    <a href='../userPanel/notification.php'>
-                        <div class='subProfileContainer'>
-                            <img class='image1' src='../assets/img/notification.png' alt=''>
-                        </div>
-                    </a>
-
-                    <a href='/userPanel/message.php'>
+                    <a href='../userPanel/message.php'>
                         <div class='subProfileContainer'>
                             <img class='image1' src='../assets/img/chat-lines.png' alt=''>
                         </div>
                     </a>
 
-                    <a href='/userPanel/addToCart.php'>
+                    <a href='../userPanel/addToCart.php'>
                         <div class='subProfileContainer'>
                             <img class='image1' src='../assets/img/cart-2.png' alt=''>
                         </div>
@@ -107,21 +100,17 @@ include('../ConnectionDB/connection.php');
     <?php
 include('../ConnectionDB/connection.php');
 
-// Check if a user is logged in
 if (isset($_SESSION['College'])) {
     $college = $_SESSION['College'];
 
-    // Retrieve data from WmsuItem table
     $wmsuItemSql = "SELECT * FROM WmsuItem";
     $wmsuItemResult = $conn->query($wmsuItemSql);
 
-    // Retrieve data from CollegeItem table for the logged-in college
     $collegeItemSql = "SELECT * FROM CollegeItem WHERE College = '$college'";
     $collegeItemResult = $conn->query($collegeItemSql);
 
     echo "<div class='container' id='itemContainer'>";
 
-    // Display items from WmsuItem table
     if ($wmsuItemResult->num_rows > 0) {
         while ($row = $wmsuItemResult->fetch_assoc()) {
             $WmsuItemID = $row['WmsuItemID'];
@@ -164,7 +153,6 @@ if (isset($_SESSION['College'])) {
         }
     }
 
-    // Display items from CollegeItem table
     if ($collegeItemResult->num_rows > 0) {
         while ($row = $collegeItemResult->fetch_assoc()) {
             $CollegeItemID = $row['CollegeItemID'];
@@ -207,9 +195,9 @@ if (isset($_SESSION['College'])) {
         }
     }
 
-    echo "</div>"; // Close container
+    echo "</div>";
 } else {
-    echo "<p>No college user is logged in.</p>";
+    echo "<script>alert('No college user is logged in.');</script>";
 }
 
 $conn->close();

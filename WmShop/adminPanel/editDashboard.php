@@ -1,7 +1,6 @@
 <?php
 include('../ConnectionDB/connection.php');
 
-// Fetch item details based on WmsuItemID
 if (isset($_GET['WmsuItemID'])) {
     $WmsuItemID = $_GET['WmsuItemID'];
     $query = "SELECT * FROM WmsuItem WHERE WmsuItemID = $WmsuItemID";
@@ -12,58 +11,35 @@ if (isset($_GET['WmsuItemID'])) {
         $ItemName = $row['ItemName'];
         $Price = $row['Price'];
         $Quantity = $row['Quantity'];
-        $Small = $row['Small'];
-        $Meduim = $row['Meduim'];
-        $Large = $row['Large'];
-        $XL = $row['XL'];
-        $XXL = $row['XXL'];
-        $XXXL = $row['XXXL'];
-        $ItemImage = $row['ItemImage'];  // Assuming this column exists in your database
+        $ItemImage = $row['ItemImage'];
     } else {
-        // Handle error, item not found
+        
     }
 } else {
-    // Handle error, WmsuItemID not set
+    
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
     $WmsuItemID = $_POST["WmsuItemID"];
     $ItemName = $_POST["ItemName"];
     $Price = $_POST["Price"];
     $Quantity = $_POST["Quantity"];
-    $Small = $_POST["Small"];
-    $Meduim = $_POST["Meduim"];
-    $Large = $_POST["Large"];
-    $XL = $_POST["XL"];
-    $XXL = $_POST["XXL"];
-    $XXXL = $_POST["XXXL"];
 
-    // Perform the database update query
     $sql = "UPDATE WmsuItem SET 
             ItemName = '$ItemName',
             Price = $Price,
-            Quantity = $Quantity,
-            Small = $Small,
-            Meduim = $Meduim,
-            Large = $Large,
-            XL = $XL,
-            XXL = $XXL,
-            XXXL = $XXXL
+            Quantity = $Quantity
             WHERE WmsuItemID = $WmsuItemID";
 
-    // Execute the query
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        //echo "Item updated successfully!";
+        echo "<script>alert('Item updated successfully!');</script>";
     } else {
-        echo "Error updating item: " . mysqli_error($conn);
+        echo "<script>alert('Error updating item: " . mysqli_error($conn) . "');</script>";
     }
 }
 
-// Close the database connection if you opened one
 mysqli_close($conn);
 ?>
 
@@ -73,7 +49,6 @@ mysqli_close($conn);
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Document</title>
-
     <link rel='stylesheet' href='../assets/css/viewDashboard.css'>
 </head>
 <body>
@@ -119,15 +94,6 @@ mysqli_close($conn);
 
                         <div class='subStockContainer'>
                             <p>Size Quantity:</p>
-                        </div>
-
-                        <div class='sizeContainer'>
-                            <input class='size' type='number' name='Small' placeholder='S' value='<?php echo $Small; ?>'>
-                            <input class='size' type='number' name='Meduim' placeholder='M' value='<?php echo $Meduim; ?>'>
-                            <input class='size' type='number' name='Large' placeholder='L' value='<?php echo $Large; ?>'>
-                            <input class='size' type='number' name='XL' placeholder='XL' value='<?php echo $XL; ?>'>
-                            <input class='size' type='number' name='XXL' placeholder='XXL' value='<?php echo $XXL; ?>'>
-                            <input class='size' type='number' name='XXXL' placeholder='XXXL' value='<?php echo $XXXL; ?>'>
                         </div>
                     </div>
 

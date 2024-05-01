@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "WmShop";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "WmShopdb";
 
 $conn = new mysqli($servername, $username, $password, $database);
 

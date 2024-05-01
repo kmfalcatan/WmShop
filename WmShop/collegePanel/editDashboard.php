@@ -1,7 +1,6 @@
 <?php
 include('../ConnectionDB/connection.php');
 
-// Fetch item details based on CollegeItemID
 if (isset($_GET['CollegeItemID'])) {
     $CollegeItemID = $_GET['CollegeItemID'];
     $query = "SELECT * FROM CollegeItem WHERE CollegeItemID = $CollegeItemID";
@@ -12,58 +11,35 @@ if (isset($_GET['CollegeItemID'])) {
         $ItemName = $row['ItemName'];
         $Price = $row['Price'];
         $Quantity = $row['Quantity'];
-        $Small = $row['Small'];
-        $Meduim = $row['Meduim'];
-        $Large = $row['Large'];
-        $XL = $row['XL'];
-        $XXL = $row['XXL'];
-        $XXXL = $row['XXXL'];
-        $ItemImage = $row['ItemImage'];  // Assuming this column exists in your database
+        $ItemImage = $row['ItemImage'];
     } else {
-        // Handle error, item not found
+        echo "<div class='alert'>Error: Item not found.</div>";
     }
 } else {
-    // Handle error, CollegeItemID not set
+    echo "<div class='alert'>Error: CollegeItemID not set.</div>";
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
     $CollegeItemID = $_POST["CollegeItemID"];
     $ItemName = $_POST["ItemName"];
     $Price = $_POST["Price"];
     $Quantity = $_POST["Quantity"];
-    $Small = $_POST["Small"];
-    $Meduim = $_POST["Meduim"];
-    $Large = $_POST["Large"];
-    $XL = $_POST["XL"];
-    $XXL = $_POST["XXL"];
-    $XXXL = $_POST["XXXL"];
 
-    // Perform the database update query
     $sql = "UPDATE CollegeItem SET 
             ItemName = '$ItemName',
             Price = $Price,
-            Quantity = $Quantity,
-            Small = $Small,
-            Meduim = $Meduim,
-            Large = $Large,
-            XL = $XL,
-            XXL = $XXL,
-            XXXL = $XXXL
+            Quantity = $Quantity
             WHERE CollegeItemID = $CollegeItemID";
 
-    // Execute the query
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        //echo "Item updated successfully!";
+        echo "<div class='success'>Item updated successfully!</div>";
     } else {
-        echo "Error updating item: " . mysqli_error($conn);
+        echo "<div class='alert'>Error updating item: " . mysqli_error($conn) . "</div>";
     }
 }
 
-// Close the database connection if you opened one
 mysqli_close($conn);
 ?>
 
@@ -119,15 +95,6 @@ mysqli_close($conn);
 
                         <div class='subStockContainer'>
                             <p>Size Quantity:</p>
-                        </div>
-
-                        <div class='sizeContainer'>
-                            <input class='size' type='number' name='Small' placeholder='S' value='<?php echo $Small; ?>'>
-                            <input class='size' type='number' name='Meduim' placeholder='M' value='<?php echo $Meduim; ?>'>
-                            <input class='size' type='number' name='Large' placeholder='L' value='<?php echo $Large; ?>'>
-                            <input class='size' type='number' name='XL' placeholder='XL' value='<?php echo $XL; ?>'>
-                            <input class='size' type='number' name='XXL' placeholder='XXL' value='<?php echo $XXL; ?>'>
-                            <input class='size' type='number' name='XXXL' placeholder='XXXL' value='<?php echo $XXXL; ?>'>
                         </div>
                     </div>
 

@@ -1,15 +1,12 @@
 <?php
 session_start();
 
-// Check if CollegeID is not set, redirect to login page
 if (!isset($_SESSION['CollegeID'])) {
     header("Location: ../authentication/signIn.php");
     exit;
 }
 
-// Rest of your existing code goes here
 include('../ConnectionDB/connection.php');
-// ... (rest of the code)
 ?>
 
 <!DOCTYPE html>
@@ -37,13 +34,11 @@ include('../ConnectionDB/connection.php');
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../collegePanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>

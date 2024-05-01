@@ -1,7 +1,6 @@
 <?php
 include('../ConnectionDB/connection.php');
 
-// Fetch item details based on StudentID
 $FirstName = $LastName = $MiddleName = $Email = $Address = $ContactNo = $College = "";
 $StudentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
 
@@ -22,16 +21,12 @@ if (!empty($StudentID)) {
         $ContactNo = isset($row["ContactNo"]) ? $row["ContactNo"] : "";
         $College = isset($row["College"]) ? $row["College"] : "";
     } else {
-        // Handle error, item not found
     }
     $stmt->close();
 } else {
-    // Handle error, StudentID not set
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
     $StudentID = isset($_POST["StudentID"]) ? $_POST["StudentID"] : "";
     $FirstName = isset($_POST["FirstName"]) ? $_POST["FirstName"] : "";
     $LastName = isset($_POST["LastName"]) ? $_POST["LastName"] : "";
@@ -41,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ContactNo = isset($_POST["ContactNo"]) ? $_POST["ContactNo"] : "";
     $College = isset($_POST["College"]) ? $_POST["College"] : "";
 
-    // Perform the database update query
     $query = "UPDATE student SET 
             FirstName = ?,
             LastName = ?,
@@ -56,15 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssssi", $FirstName, $LastName, $MiddleName, $Email, $Address, $ContactNo, $College, $StudentID);
 
     if ($stmt->execute()) {
-        //echo "Item updated successfully!";
     } else {
         echo "Error updating item: " . $stmt->error;
+        echo "<script>alert('Error updating item: ');</script>" . $stmt->error;
     }
 
     $stmt->close();
 }
 
-// Close the database connection if you opened one
 $conn->close();
 ?>
 

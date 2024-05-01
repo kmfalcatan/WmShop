@@ -8,7 +8,6 @@ function showAlert($message) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve user input
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $middleName = $_POST["middleName"];
@@ -19,29 +18,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
     
-    // You might want to perform additional validation and sanitation here
-
-    // Check if passwords match
     if ($password !== $confirmPassword) {
         showAlert("Error: Passwords do not match");
+        echo "<script>alert('Error: Passwords do not match');</script>";
         exit();
     }
 
-    // Check if the email has the required domain
     if (!endsWith($email, "@wmsu.edu.ph")) {
-        showAlert("Error: Email must have the domain @wmsu.edu.ph");
+        echo "<script>alert('Error: Email must have the domain @wmsu.edu.ph');</script>";
         exit();
     }
 
-    // Hash the password before storing in the database
-    //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $hashedPassword = $password;
 
-    // Database connection details
     
     include('../ConnectionDB/connection.php');
 
-    // Your SQL query to check if the email already exists in the Student table
     $checkEmailQuery = "SELECT COUNT(*) as count FROM PendingStudent WHERE Email = '$email'";
     $checkResult = $conn->query($checkEmailQuery);
 
@@ -50,28 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailCount = $row['count'];
 
         if ($emailCount > 0) {
-            showAlert("Error: Email is already registered");
+            echo "<script>alert('Error: Email is already registered');</script>";
         } else {
-            // Your SQL query to insert data into the PendingStudent table
             $sql = "INSERT INTO PendingStudent (FirstName, LastName, MiddleName, Email, Address, ContactNo, College, Password, Role)
                     VALUES ('$firstName', '$lastName', '$middleName', '$email', '$address', '$contactNo', '$college', '$hashedPassword', 'Student')";
 
             if ($conn->query($sql) === TRUE) {
-                showAlert("New record created successfully");
+                echo "<script>alert('New record created successfully');</script>";
             } else {
-                showAlert("Error: " . $conn->error);
+                echo "<script>alert('Error: ');</script>" . $conn->error;
             }
         }
     } else {
-        showAlert("Error checking email: " . $conn->error);
+        echo "<script>alert('Error checking email: ');</script>" . $conn->error;
     }
 
-    // Close the check result
     $checkResult->close();
     $conn->close();
 }
 
-// Helper function to check if a string ends with another string
 function endsWith($haystack, $needle) {
     return substr($haystack, -strlen($needle)) === $needle;
 }

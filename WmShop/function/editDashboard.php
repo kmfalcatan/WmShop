@@ -2,7 +2,6 @@
 include('../ConnectionDB/connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
     $WmsuItemID = $_POST["WmsuItemID"];
     $ItemName = $_POST["ItemName"];
     $Price = $_POST["Price"];
@@ -14,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $XXL = $_POST["XXL"];
     $XXXL = $_POST["XXXL"];
 
-    // Perform the database update query
     $sql = "UPDATE WmsuItem SET 
             ItemName = '$ItemName',
             Price = $Price,
@@ -27,16 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             XXXL = $XXXL
             WHERE WmsuItemID = $WmsuItemID";
 
-    // Execute the query
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        echo "Item updated successfully!";
+        echo "<script>alert('Item updated successfully!');</script>";
     } else {
-        echo "Error updating item: " . mysqli_error($conn);
+        echo "<script>alert('Error updating item: ');</script>" . mysqli_error($conn);
     }
 }
 
-// Close the database connection if you opened one
 mysqli_close($conn);
 ?>

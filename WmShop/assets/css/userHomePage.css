@@ -21,6 +21,7 @@ body{
     border-bottom: solid rgb(248, 45, 45) 1px;
     background-color: rgb(252, 84, 84);
     position: fixed;
+    z-index: 1;
 }
 
 .imageContainer{
@@ -32,13 +33,22 @@ body{
 
 .subImageContainer{
     height: 100%;
-    width: 8rem;
+    width: 4rem;
     margin-left: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.image7{
+    background-color: white;
+    height: 3rem;
+    border-radius: 5rem;
+}
+
+.image{
+    filter: invert(100%);
+}
 .nameContainer{
     height: 100%;
     width: 5rem;
@@ -51,7 +61,7 @@ body{
 
 .profileContainer{
     height: 100%;
-    width: 12rem;
+    width: 8rem;
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -83,7 +93,7 @@ body{
     margin-bottom: 0.313rem;
     margin-top: 0.5rem;
     margin-left: 0.563rem;
-    border-color: black;
+    border-color: white;
 }
 
 .hidden{
@@ -196,6 +206,7 @@ body{
 
 .image1{
     height: 2rem;
+    filter: invert(100%);
 }
 
 @keyframes sideIn {
@@ -572,7 +583,7 @@ body{
         height: 100%;
         width: 3rem;
         border-radius: 5rem;
-        border: solid black 1px;
+        border: solid white 1px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -591,6 +602,11 @@ body{
         height: 100%;
         width: 100%;
         border-radius: 5rem;
+        filter: invert(100%);
+    }
+
+    .viewIcon img:hover{
+        filter: invert(0%);
     }
 
     .itemContainer{
@@ -711,7 +727,7 @@ body{
         border: solid 1px rgb(248, 45, 45);
     }
 
-    .sideNavBar1{
+    z.sideNavBar1{
         border-top-right-radius: 1rem;
         height: 3.1rem;
     }

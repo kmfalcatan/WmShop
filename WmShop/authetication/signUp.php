@@ -1,4 +1,4 @@
-<?php include('../function/signUp.php') ?>
+<?php include('../function/signUpStudent.php') ?>
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -26,7 +26,7 @@
                     <div class='subInputUserContainer2'>
                         <input class='inputUser1' type='text' placeholder='First name' name='firstName' required>
                         <input class='inputUser1' type='text' placeholder='Last name' name='lastName' required>
-                        <input class='inputUser1' type='text' placeholder='Middle name' name='middleName' required>
+                        <input class='inputUser1' type='text' placeholder='Middle name' name='middleName'>
                     </div>
 
                     <div class='subInputUserContainer2'>
@@ -46,11 +46,53 @@
                             <option value=''>
                                 Choose a college
                             </option>
-                            <option value='College of Computing Studies'>
+                            <option class="department" value="College of Computing Studies">
                                 College of Computing Studies
                             </option>
-                            <option value='College of Engineering'>
+                            <option class="department" value="College of Agriculture">
+                                College of Agriculture
+                            </option>
+                            <option class="department" value="College of Architecture">
+                                College of Architecture
+                            </option>
+                            <option class="department" value="College of Asian and Islamic Studies">
+                                College of Asian and Islamic Studies
+                            </option>
+                            <option class="department" value="College of Criminal justice Educaiton">
+                                College of Criminal justice Educaiton
+                            </option>
+                            <option class="department" value="College of Engineering">
                                 College of Engineering
+                            </option>
+                            <option class="department" value="College of Forestry and Environmental Studies">
+                                College of Forestry and Environmental Studies
+                            </option>
+                            <option class="department" value="College of Home Economics">
+                                College of Home Economics
+                            </option>
+                            <option class="department" value="College of Law">
+                                College of Law
+                            </option>
+                            <option class="department" value="College of Liberal Arts">
+                                College of Liberal Arts
+                            </option>
+                            <option class="department" value="College of Nursing">
+                                College of Nursing
+                            </option>
+                            <option class="department" value="College of Public Administration and Development Studies">
+                                College of Public Administration and Development Studies
+                            </option>
+                            <option class="department" value="College of Sports Science and Physical Education">
+                                College of Sports Science and Physical Education
+                            </option>
+                            <option class="department" value="College of Science and Mathematics">
+                                College of Science and Mathematics
+                            </option>
+                            <option class="department" value="College of Social Work and Community development">
+                                College of Social Work and Community development
+                            </option>
+                            <option class="department" value="College of Teacher Education">
+                                College of Teacher Education
                             </option>
                         </select>
                     </div>

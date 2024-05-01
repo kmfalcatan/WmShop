@@ -8,6 +8,11 @@ body{
     font-family: system-ui, -apple-system;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
 .container{
     height: 100vh;
     display: flex;
@@ -18,7 +23,6 @@ body{
 }
 
 .subContainer{
-    height: 35rem;
     width: 90%;
     padding: 0.5rem;
     border-radius: 0.5rem;

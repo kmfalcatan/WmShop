@@ -25,13 +25,11 @@
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../adminPanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -82,26 +80,60 @@
                         </div>
 
                         <div class='subStockContainer10'>
-                            <p>Size Quantity:</p>
-                        </div>
-
-                        <div class='sizeContainer10'>
-                            <input class='size' type='number' name='Small' placeholder='S'>
-                            <input class='size' type='number' name='Meduim' placeholder='M'>
-                            <input class='size' type='number' name='Large' placeholder='L'>
-                            <input class='size' type='number' name='XL' placeholder='XL'>
-                            <input class='size' type='number' name='XXL' placeholder='XXL'>
-                            <input class='size' type='number' name='XXXL' placeholder='XXXL'>
-                        </div>
-
-                        <div class='subStockContainer10'>
                             <p>other information:</p>
                         </div>
 
                         <div class='subInfoContainer10'>
                             <select name='College' class='inputInfo10'>
                                 <option value=''>Choose college</option>
-                                <option value='College of Computing Studies'>College of Computing Studies</option>
+                                <option class="department" value="College of Computing Studies">
+                                    College of Computing Studies
+                                </option>
+                                <option class="department" value="College of Agriculture">
+                                    College of Agriculture
+                                </option>
+                                <option class="department" value="College of Architecture">
+                                    College of Architecture
+                                </option>
+                                <option class="department" value="College of Asian and Islamic Studies">
+                                    College of Asian and Islamic Studies
+                                </option>
+                                <option class="department" value="College of Criminal justice Educaiton">
+                                    College of Criminal justice Educaiton
+                                </option>
+                                <option class="department" value="College of Engineering">
+                                    College of Engineering
+                                </option>
+                                <option class="department" value="College of Forestry and Environmental Studies">
+                                    College of Forestry and Environmental Studies
+                                </option>
+                                <option class="department" value="College of Home Economics">
+                                    College of Home Economics
+                                </option>
+                                <option class="department" value="College of Law">
+                                    College of Law
+                                </option>
+                                <option class="department" value="College of Liberal Arts">
+                                    College of Liberal Arts
+                                </option>
+                                <option class="department" value="College of Nursing">
+                                    College of Nursing
+                                </option>
+                                <option class="department" value="College of Public Administration and Development Studies">
+                                    College of Public Administration and Development Studies
+                                </option>
+                                <option class="department" value="College of Sports Science and Physical Education">
+                                    College of Sports Science and Physical Education
+                                </option>
+                                <option class="department" value="College of Science and Mathematics">
+                                    College of Science and Mathematics
+                                </option>
+                                <option class="department" value="College of Social Work and Community development">
+                                    College of Social Work and Community development
+                                </option>
+                                <option class="department" value="College of Teacher Education">
+                                    College of Teacher Education
+                                </option>
                             </select>
                         </div>
 
@@ -109,6 +141,11 @@
                             <select name='TypesOfItem' class='inputInfo10'>
                                 <option value=''>Types of item</option>
                                 <option value='Uniform'>Uniform</option>
+                                <option value="Lanyard">Lanyard</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Department T-Shirt">Department T-Shirt</option>
+                                <option value="Department Jacket">Department Jacket</option>
+                                <option value="Department Polo Shirt">Department Polo Shirt</option>
                             </select>
                         </div>
 

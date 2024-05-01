@@ -77,26 +77,24 @@ body{
 }
 
 .backButtonContainer{
-    height: 3rem;
+    height: 4rem;
+    background-color: rgb(252, 84, 84);
     width: 100%;
-
+    margin-bottom: 5%;
 }
 
 .subbackButtonContainer{
     height: 100%;
     width: 3rem;
     margin-left: 1.4rem;
+    display: flex;
+    align-items: center;
 }
 
 .backButton{
-    height: 100%;
+    height: 3rem;
     width: 100%;
-    transition: all 0.15s;
-}
-
-.backButton:hover{
-    background-color: rgb(255, 150, 150);
-    border-radius: 0.5rem;
+    filter: invert(100%);
 }
 
 .slideshow-container {
