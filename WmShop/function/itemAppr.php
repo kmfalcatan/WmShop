@@ -1,4 +1,5 @@
 <?php
+include('../ItemConfig.php');
 include('../ConnectionDB/connection.php');
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -13,21 +14,16 @@ $CollegeID = '1';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     $PendingItemID = $_POST['PendingItemID'];
     $CollegeID = $_POST['CollegeID'];
+    $Email = $_POST['Email'];
+    $CollegeName = $_POST['CollegeName'];
     $itemImage = $_POST["ItemImage"];
     $itemName = $_POST["ItemName"];
     $price = $_POST["Price"];
     $quantity = $_POST["Quantity"];
-    $small = $_POST["Small"];
-    $medium = $_POST["Meduim"];
-    $large = $_POST["Large"];
-    $xl = $_POST["XL"];
-    $xxl = $_POST["XXL"];
-    $xxxl = $_POST["XXXL"];
     $college = $_POST["College"];
     $typesOfItem = $_POST["TypesOfItem"];
     $description = $_POST["Description"];
 
-    // Use prepared statements to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM PendingItem WHERE PendingItemID = ?");
     $stmt->bind_param("s", $PendingItemID);
     $stmt->execute();
@@ -37,41 +33,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         $row = $result->fetch_assoc();
 
         if ($_POST['action'] == "Accept") {
-            // Insert into the CollegeItem table using prepared statement
-            $stmt = $conn->prepare("INSERT INTO CollegeItem (CollegeID, ItemImage, ItemName, Price, Quantity, Small, Meduim, Large, XL, XXL, XXXL, College, TypesOfItem, Description) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO CollegeItem (CollegeID, ItemImage, ItemName, Price, Quantity, College, TypesOfItem, Description, Email, CollegeName) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            $stmt->bind_param("issiiiiiiiisss", $CollegeID, $itemImage, $itemName, $price, $quantity, $small, $medium, $large, $xl, $xxl, $xxxl, $college, $typesOfItem, $description);
+            $stmt->bind_param("issiisssss", $CollegeID, $itemImage, $itemName, $price, $quantity, $college, $typesOfItem, $description, $Email, $CollegeName);
 
             if ($stmt->execute()) {
-                // Delete from the PendingItem table
                 $stmt = $conn->prepare("DELETE FROM PendingItem WHERE PendingItemID = ?");
                 $stmt->bind_param("s", $PendingItemID);
 
                 if ($stmt->execute()) {
-                    $message = "Item '$itemName' approved successfully.";
+                    echo "<script>alert('Item '$itemName' approved successfully.');</script>";
                 } else {
-                    $message = "Error deleting pending item: " . $stmt->error;
+                    echo "<script>alert('Error deleting pending item: ');</script>" . $stmt->error;
                 }
             } else {
-                $message = "Error inserting into CollegeItem table: " . $stmt->error;
+                echo "<script>alert('Error inserting into CollegeItem table: ');</script>" . $stmt->error;
             }
         } elseif ($_POST['action'] == "Denied") {
-            // Delete from the PendingItem table using prepared statement
             $stmt = $conn->prepare("DELETE FROM PendingItem WHERE PendingItemID = ?");
             $stmt->bind_param("s", $PendingItemID);
 
             if ($stmt->execute()) {
-                $message = "Item '$itemName' declined successfully.";
+                echo "<script>alert('Item '$itemName' declined successfully.');</script>";
             } else {
-                $message = "Error declining pending item: " . $stmt->error;
+                echo "<script>alert('Error declining pending item:');</script>" . $stmt->error;
             }
         }
     } else {
-        $message = "Invalid PendingItemID.";
+        echo "<script>alert('Invalid PendingItemID.');</script>";
     }
 
-    // Close the prepared statement
     $stmt->close();
 }
 

@@ -16,9 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         $stmt->bind_param("i", $CollegeID);
 
         if ($stmt->execute()) {
-            $message = "College deleted successfully.";
+            echo "<script>alert('College deleted successfully.');</script>";
         } else {
-            $message = "Error deleting seller: " . $stmt->error;
+            echo "<script>alert('Error deleting seller: ');</script>" . $stmt->error;
         }
         $stmt->close();
     }

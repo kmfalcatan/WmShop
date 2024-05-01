@@ -23,13 +23,11 @@
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../adminPanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -45,108 +43,108 @@
         </div>
     </div>
 
-    
-
     <div class='container2'>
-                <div class='subContainer2'>
-                <div class='itemContainer'>
-    <?php
-include('../ConnectionDB/connection.php');
+        <div class='subContainer2'>
+            <div class='itemContainer'>
+                <?php
+                include('../ConnectionDB/connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
-    $MyOrderID = $_POST['MyOrderID'];
-    $Status = $_POST['Status'];
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateStatus'])) {
+                    $MyOrderID = $_POST['MyOrderID'];
+                    $Status = $_POST['Status'];
 
-    if ($Status == 'Order complete') {
-        // Fetch order details
-        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
-        $stmtOrder = $conn->prepare($orderSql);
-        $stmtOrder->bind_param("i", $MyOrderID);
-        $stmtOrder->execute();
-        $orderResult = $stmtOrder->get_result();
+                    if ($Status == 'Order complete') {
+                        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
+                        $stmtOrder = $conn->prepare($orderSql);
+                        $stmtOrder->bind_param("i", $MyOrderID);
+                        $stmtOrder->execute();
+                        $orderResult = $stmtOrder->get_result();
 
-        if ($orderResult->num_rows > 0) {
-            $orderRow = $orderResult->fetch_assoc();
+                        if ($orderResult->num_rows > 0) {
+                            $orderRow = $orderResult->fetch_assoc();
 
-            $insertSql = "INSERT INTO Transaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
-                          VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-            $stmtInsert = $conn->prepare($insertSql);
-            $stmtInsert->bind_param("ssiiisss", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status);
+                            $insertSql = "INSERT INTO Transaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, Payment)
+                                          VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            $stmtInsert = $conn->prepare($insertSql);
+                            $stmtInsert->bind_param("ssiiisssi", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status, $orderRow['Payment']);
 
-            if ($stmtInsert->execute()) {
-                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = ?";
-                $stmtDelete = $conn->prepare($deleteSql);
-                $stmtDelete->bind_param("i", $MyOrderID);
+                            if ($stmtInsert->execute()) {
+                                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = ?";
+                                $stmtDelete = $conn->prepare($deleteSql);
+                                $stmtDelete->bind_param("i", $MyOrderID);
 
-                if ($stmtDelete->execute() !== true) {
-                    echo "Error deleting from my_order: " . $stmtDelete->error;
+                                if ($stmtDelete->execute() !== true) {
+                                    echo "<script>alert('Error deleting from my_order: ');</script>" . $stmtInsert->error;
+                                }
+                            } else {
+                                echo "<script>alert('Error inserting into history: ');</script>" . $stmtInsert->error;
+                            }
+                        }
+
+                        $stmtOrder->close();
+                        $stmtInsert->close();
+                        $stmtDelete->close();
+                    } elseif ($Status == 'Cancel order') {
+                        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
+                        $stmtOrder = $conn->prepare($orderSql);
+                        $stmtOrder->bind_param("i", $MyOrderID);
+                        $stmtOrder->execute();
+                        $orderResult = $stmtOrder->get_result();
+
+                        if ($orderResult->num_rows > 0) {
+                            $orderRow = $orderResult->fetch_assoc();
+
+                            $insertSql = "INSERT INTO CancelOrderTransaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, Payment)
+                                          VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            $stmtInsert = $conn->prepare($insertSql);
+                            $stmtInsert->bind_param("ssiiisssi", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status, $orderRow['Payment']);
+
+                            if ($stmtInsert->execute()) {
+                                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = ?";
+                                $stmtDelete = $conn->prepare($deleteSql);
+                                $stmtDelete->bind_param("i", $MyOrderID);
+
+                                if ($stmtDelete->execute() !== true) {
+                                    echo "Error deleting from my_order: " . $stmtDelete->error;
+                                }
+                            } else {
+                                echo "Error inserting into history: " . $stmtInsert->error;
+                            }
+                        }
+
+                        $stmtOrder->close();
+                        $stmtInsert->close();
+                        $stmtDelete->close();
+                    } else {
+
+                    }
                 }
-            } else {
-                echo "Error inserting into history: " . $stmtInsert->error;
-            }
-        }
 
-        $stmtOrder->close();
-        $stmtInsert->close();
-        $stmtDelete->close();
-    } elseif($Status == 'Cancel order'){
-        $orderSql = "SELECT * FROM MyOrder WHERE MyOrderID = ?";
-        $stmtOrder = $conn->prepare($orderSql);
-        $stmtOrder->bind_param("i", $MyOrderID);
-        $stmtOrder->execute();
-        $orderResult = $stmtOrder->get_result();
+                $orderSql = "SELECT * FROM MyOrder WHERE AdminID = 1";
+                $stmtOrderList = $conn->prepare($orderSql);
+                $stmtOrderList->execute();
+                $orderResult = $stmtOrderList->get_result();
 
-        if ($orderResult->num_rows > 0) {
-            $orderRow = $orderResult->fetch_assoc();
+                if ($orderResult->num_rows > 0) {
+                    while ($orderRow = $orderResult->fetch_assoc()) {
+                        $UserName = $orderRow['UserName'];
+                        $ItemImage = $orderRow['ItemImage'];
+                        $ItemName = $orderRow['ItemName'];
+                        $MyOrderID = $orderRow['MyOrderID'];
+                        $Status = $orderRow['Status'];
+                        $Payment = $orderRow['Payment'];
+                        $TotalPrice = $orderRow['TotalPrice'];
+                        $Quantity = $orderRow['Quantity'];
+                        $Description = $orderRow['Description'];
+                        $Size = $orderRow['Size'];
 
-            $insertSql = "INSERT INTO CancelOrderTransaction (AdminID, UserName, ItemName, Quantity, TotalPrice, Size, ItemImage, Description, Status, date)
-                          VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-            $stmtInsert = $conn->prepare($insertSql);
-            $stmtInsert->bind_param("ssiiisss", $orderRow['UserName'], $orderRow['ItemName'], $orderRow['Quantity'], $orderRow['TotalPrice'], $orderRow['Size'], $orderRow['ItemImage'], $orderRow['Description'], $Status);
-
-            if ($stmtInsert->execute()) {
-                $deleteSql = "DELETE FROM MyOrder WHERE MyOrderID = ?";
-                $stmtDelete = $conn->prepare($deleteSql);
-                $stmtDelete->bind_param("i", $MyOrderID);
-
-                if ($stmtDelete->execute() !== true) {
-                    echo "Error deleting from my_order: " . $stmtDelete->error;
-                }
-            } else {
-                echo "Error inserting into history: " . $stmtInsert->error;
-            }
-        }
-
-        $stmtOrder->close();
-        $stmtInsert->close();
-        $stmtDelete->close();
-    } else {
-        $updateSql = "UPDATE MyOrder SET Status = ? WHERE MyOrderID = ?";
-        $stmtUpdate = $conn->prepare($updateSql);
-        $stmtUpdate->bind_param("si", $Status, $MyOrderID);
-
-        if ($stmtUpdate->execute() !== true) {
-            echo "Error updating Status: " . $stmtUpdate->error;
-        }
-
-        $stmtUpdate->close();
-    }
-}
-
-$orderSql = "SELECT * FROM MyOrder WHERE AdminID = 1";
-$stmtOrderList = $conn->prepare($orderSql);
-$stmtOrderList->execute();
-$orderResult = $stmtOrderList->get_result();
-
-if ($orderResult->num_rows > 0) {
-    while ($orderRow = $orderResult->fetch_assoc()) {
-        $UserName = $orderRow['UserName'];
-        $ItemImage = $orderRow['ItemImage'];
-        $ItemName = $orderRow['ItemName'];
-        $MyOrderID = $orderRow['MyOrderID'];
-        $Status = $orderRow['Status'];
-                echo "
+                        echo "
                         <div class='subItemContainer'>
+                            <input type='hidden' value='$Payment'>
+                            <input type='hidden' value='$TotalPrice'>
+                            <input type='hidden' value='$Quantity'>
+                            <input type='hidden' value='$Size'>
+                            <input type='hidden' value='$Description'>
                             <div class='imageContainer2'>
                                 <a class='subImageContainer2' href='../adminPanel/viewOrders.php?MyOrderID=$MyOrderID'>
                                     <div class='subImageContainer2'>
@@ -171,7 +169,7 @@ if ($orderResult->num_rows > 0) {
 
                             <div class='updateContainer'>
                                 <div class='subUpdateContainer'>
-                                    <form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
+                                    <form class='update' method='post' action='" . $_SERVER['PHP_SELF'] . "'>
                                         <input type='hidden' name='MyOrderID' value='$MyOrderID'>
                                         <select class='update' name='Status'>
                                             <option value='' " . ($Status == '' ? 'selected' : '') . ">Choose</option>
@@ -188,18 +186,18 @@ if ($orderResult->num_rows > 0) {
                                 </div>
                             </div>
                         </div>";
-    }
-} else {
-    echo "<p>No orders found.</p>";
-}
+                    }
+                } else {
+                    echo "<p>No orders found.</p>";
+                }
 
-$stmtOrderList->close();
-$conn->close();
-?>
-</div>
-</div>
-</div>
+                $stmtOrderList->close();
+                $conn->close();
+                ?>
+            </div>
+        </div>
+    </div>
 
-<script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>

@@ -1,6 +1,15 @@
-function toggleChatContainer() {
+function toggleChatContainer(studentName, studentID) {
     var chatContainer = document.querySelector('.chatContainer');
-    chatContainer.style.display = (chatContainer.style.display === 'none' || chatContainer.style.display === '') ? 'block' : 'none';
+    chatContainer.style.display = 'block'; // Show the chat container
+
+    // Set the studentID value in the hidden input field
+    document.getElementById('studentID').value = studentID;
+
+    // Update the student's name in the chat header
+    var chatHeader = document.querySelector('.studentChat p');
+    chatHeader.textContent = studentName;
+
+    // You can optionally load previous messages related to this student here
 }
 
 function toggleSubContainer(event) {

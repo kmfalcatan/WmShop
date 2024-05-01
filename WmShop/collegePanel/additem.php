@@ -25,13 +25,11 @@
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../collegePanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -82,32 +80,19 @@
                         </div>
 
                         <div class='subStockContainer10'>
-                            <p>Size Quantity:</p>
-                        </div>
-
-                        <div class='sizeContainer10'>
-                            <input class='size' type='number' name='Small' placeholder='S'>
-                            <input class='size' type='number' name='Meduim' placeholder='M'>
-                            <input class='size' type='number' name='Large' placeholder='L'>
-                            <input class='size' type='number' name='XL' placeholder='XL'>
-                            <input class='size' type='number' name='XXL' placeholder='XXL'>
-                            <input class='size' type='number' name='XXXL' placeholder='XXXL'>
-                        </div>
-
-                        <div class='subStockContainer10'>
                             <p>other information:</p>
                         </div>
 
                         <div class='subInfoContainer10'>
                             <?php
-                            // Assuming you have a connection to the database in your connection.php file
                             include('../ConnectionDB/connection.php');
 
-                            // Check if CollegeID is set in the session
                             if (isset($_SESSION['CollegeID'])) {
                                 $CollegeID = $_SESSION['CollegeID'];
 
-                                // Assuming you have a table named 'Colleges' with columns 'CollegeID' and 'College'
+                                if (isset($_SESSION['Email'])) {
+                                    $Email = $_SESSION['Email'];
+                                
                                 $sql = "SELECT CollegeID, College FROM College WHERE CollegeID = $CollegeID";
                                 $result = $conn->query($sql);
 
@@ -118,8 +103,8 @@
                                     }
                                 }
                             }
+                        }
 
-                            // Close the database connection
                             $conn->close();
                             ?>
                         </div>
@@ -131,9 +116,9 @@
                                 <option value='Uniform'>Uniform</option>
                                 <option value="Lanyard">Lanyard</option>
                                 <option value="Accessories">Accessories</option>
-                                <option value="Department T-Shirt">Department T-Shirt</option>
-                                <option value="Department Jacket">Department Jacket</option>
-                                <option value="Department Polo Shirt">Department Polo Shirt</option>
+                                <option value="College T-Shirt">College T-Shirt</option>
+                                <option value="College Jacket">College Jacket</option>
+                                <option value="College Polo Shirt">College Polo Shirt</option>
                             </select>
                         </div>
 

@@ -5,6 +5,10 @@
                             Profile
                         </a>
                     </div>
+
+                    <!--<div>
+                        <img src="../assets/img/user.png" alt="">
+                    </div>-->
                 </div>
         
                 <div class='sideNavBar'>
@@ -13,6 +17,10 @@
                                 My Orders
                             </a>
                         </div>
+
+                        <!--<div>
+                            <img src="../assets/img/shopping-bag.png" alt="">
+                        </div>-->
                 </div>
                 <div class='sideNavBar2'>
                     <div class='subSideNavBar'>
@@ -20,5 +28,9 @@
                             Log out
                         </a>
                     </div>
+
+                    <!--<div>
+                        <img src="../assets/img/log-out.png" alt="">
+                    </div>-->
                 </div>
             </div>

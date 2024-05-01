@@ -11,16 +11,16 @@
     <div class='container'>
         <div class='subContainer'>
             <div class='subContainer1'>
+                <div class='orderContainer'>
                 <?php
                 include('../ConnectionDB/connection.php');
         session_start();
 
         if (!isset($_SESSION['StudentID'])) {
-            //header('location: /Crimson Mart1/logIn_logOut/loginStudent/loginStudent.php');
         } else {
             $StudentId = $_SESSION['StudentID'];
 
-            $orderSql = "SELECT * FROM MyOrder WHERE StudentID = '$StudentId' GROUP BY (MyOrderID)DESC";
+            $orderSql = "SELECT * FROM MyOrder WHERE StudentID = '$StudentId'";
             $orderResult = $conn->query($orderSql);
 
             if ($orderResult->num_rows > 0) {
@@ -33,7 +33,7 @@
                     $Size = $orderRow['Size'];
                     $Payment = $orderRow['Payment'];
                     
-                    echo"<div class='orderContainer'>
+                    echo"
                     <div class='subOrderContainer'>
                         <div class='imageContainer'>
                             <div class='subImageContainer'>
@@ -69,15 +69,8 @@
                                     <p>Payment method: $Payment</p>
                                 </div>
                             </div>
-
-                            <div class='buttonContainer'>
-                                <button class='cancelButton'>Cancel</button>
-                                <button class='recieveButton'>Recieve</button>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>";
+                    </div>";
         }
     } else {
         echo "<p>No orders found.</p>";
@@ -87,6 +80,8 @@
 $conn->close();
 ?>
 
+</div>
+</div>
             <div class='backContainer'>
                 <a href='../userPanel/userhomePage.php'>
                     <button class='backButton'>Back</button>

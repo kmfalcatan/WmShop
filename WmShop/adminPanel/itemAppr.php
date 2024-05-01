@@ -24,13 +24,11 @@
                 </div>
 
                 <div class='profileContainer'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
+                    <a href='../adminPanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                     <div class='subProfileContainer'>
                         <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -55,22 +53,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th rowspan='2'>ITEM IMAGE</th>
-                            <th rowspan='2'>ITEM NAME</th>
-                            <th rowspan='2'>QUANTITY</th>
-                            <th class='th4' colspan='6'>STOCKS</th>
-                            <th rowspan='2'>PRICE</th>
-                            <th rowspan='2'>DESCRIPTION</th>
-                            <th rowspan='2'>ACTION</th>
-                        </tr>
-
-                        <tr>
-                            <th>S</th>
-                            <th>M</th>
-                            <th>L</th>
-                            <th>XL</th>
-                            <th>XXL</th>
-                            <th>XXXL</th>
+                            <th rowspan='1'>NAME</th>
+                            <th rowspan='1'>ITEM IMAGE</th>
+                            <th rowspan='1'>ITEM NAME</th>
+                            <th rowspan='1'>QUANTITY</th>
+                            <th rowspan='1'>PRICE</th>
+                            <th rowspan='1'>DESCRIPTION</th>
+                            <th rowspan='1'>ACTION</th>
                         </tr>
                     </thead>
                     
@@ -89,31 +78,22 @@
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 $PendingItemID = $row['PendingItemID'];
+                                $CollegeName = $row['CollegeName'];
                                 $CollegeID = $row['CollegeID'];
                                 $itemImage = $row["ItemImage"];
                                 $itemName = $row["ItemName"];
                                 $price = $row["Price"];
                                 $quantity = $row["Quantity"];
-                                $small = $row["Small"];
-                                $medium = $row["Meduim"];
-                                $large = $row["Large"];
-                                $xl = $row["XL"];
-                                $xxl = $row["XXL"];
-                                $xxxl = $row["XXXL"];
                                 $college = $row["College"];
                                 $typesOfItem = $row["TypesOfItem"];
                                 $description = $row["Description"];
+                                $Email = $row["Email"];
                    echo"<tbody>
                         <tr>
+                            <td>" .$CollegeName. " </td>
                             <td>" .$itemName. " </td>
                             <td><img class='image8' src='../assets/img/" .$itemImage. "' alt=''></td>
                             <td>$quantity</td>
-                            <td>$small</td>
-                            <td>$medium</td>
-                            <td>$large</td>
-                            <td>$xl</td>
-                            <td>$xxl</td>
-                            <td>$xxxl</td>
                             <td>$price</td>
                             <td>$description</td>
                             <td class='actionContainer'>
@@ -124,15 +104,11 @@
                                 <input type='hidden' name='ItemName' value='$itemName'>
                                 <input type='hidden' name='Price' value='$price'>
                                 <input type='hidden' name='Quantity' value='$quantity'>
-                                <input type='hidden' name='Small' value='$small'>
-                                <input type='hidden' name='Meduim' value='$medium'>
-                                <input type='hidden' name='Large' value='$large'>
-                                <input type='hidden' name='XL' value='$xl'>
-                                <input type='hidden' name='XXL' value='$xxl'>
-                                <input type='hidden' name='XXXL' value='$xxxl'>
                                 <input type='hidden' name='College' value='$college'>
                                 <input type='hidden' name='TypesOfItem' value='$typesOfItem'>
                                 <input type='hidden' name='Description' value='$description'>
+                                <input type='hidden' name='Email' value='$Email'>
+                                <input type='hidden' name='CollegeName' value='$CollegeName'>
                                 <button class='action' name='action' value='Accept'>Accept</button>
                                 <button class='action' name='action' value='Denied'>Denied</button>
                             </form>

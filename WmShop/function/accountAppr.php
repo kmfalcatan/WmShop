@@ -1,4 +1,5 @@
 <?php
+include('../send.email.php');
 include('../ConnectionDB/connection.php');
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -22,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     $password = $_POST["password"];
     $role = $_POST['role'];
 
-    // Use prepared statements to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM PendingStudent WHERE PendingStudentID = ? AND role = 'Student'");
     $stmt->bind_param("s", $PendingStudentID);
     $stmt->execute();
@@ -31,45 +31,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
 
-        // Hash the password
-        //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $hashedPassword = $password;
 
         if ($_POST['action'] == "Accept") {
-            // Insert into the student table using prepared statement
             $stmt = $conn->prepare("INSERT INTO Student (adminID, firstName, lastName, middleName, email, address, contactNo, college, password, role) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssssss", $adminID, $firstName, $lastName, $middleName, $email, $address, $contactNo, $college, $hashedPassword, $role);
 
             if ($stmt->execute()) {
-                // Delete from the pending_account table
                 $stmt = $conn->prepare("DELETE FROM PendingStudent WHERE PendingStudentID = ?");
                 $stmt->bind_param("s", $PendingStudentID);
 
                 if ($stmt->execute()) {
-                    $message = "User '$firstName $lastName' approved successfully.";
+                    echo "<script>alert('User '$firstName $lastName' approved successfully.');</script>";
                 } else {
-                    $message = "Error deleting pending account: " . $stmt->error;
+                    echo "<script>alert('Error deleting pending account: ');</script>" . $stmt->error;
                 }
             } else {
-                $message = "Error inserting into student table: " . $stmt->error;
+                echo "<script>alert('Error inserting into student table: ');</script>" . $stmt->error;
             }
         } elseif ($_POST['action'] == "Denied") {
-            // Delete from the pending_account table using prepared statement
             $stmt = $conn->prepare("DELETE FROM PendingStudent WHERE PendingStudentID = ?");
             $stmt->bind_param("s", $PendingStudentID);
 
             if ($stmt->execute()) {
-                $message = "User '$firstName $lastName' declined successfully.";
+                echo "<script>alert('User '$firstName $lastName' declined successfully.');</script>";
             } else {
-                $message = "Error declining pending account: " . $stmt->error;
+                echo "<script>alert('Error declining pending account: ');</script>";
             }
         }
     } else {
-        $message = "Invalid PendingStudentID or role.";
+        echo "<script>alert('Invalid PendingStudentID or role.');</script>";
     }
 
-    // Close the prepared statement
     $stmt->close();
 }
 

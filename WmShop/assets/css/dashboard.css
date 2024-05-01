@@ -48,6 +48,7 @@ body{
 
 .image1{
     height: 2rem;
+    filter: invert(100%);
 }
 
 .profileContainer{
@@ -84,7 +85,7 @@ body{
     margin-bottom: 0.313rem;
     margin-top: 0.5rem;
     margin-left: 0.563rem;
-    border-color: black;
+    border-color: white;
 }
 
 .hidden{
@@ -280,7 +281,7 @@ body{
 }
 
 .tableContainer{
-    height: 71%;
+    height: 90%;
     width: 90%;
     background-color: rgb(240, 240, 240);
     overflow-x: auto;
@@ -390,7 +391,7 @@ body{
     }
     
     .tableContainer{
-        height: 71%;
+        height: 90%;
         width: 90%;
         background-color: rgb(240, 240, 240);
         overflow-x: auto;
@@ -556,7 +557,7 @@ body{
     }
 
     .tableContainer{
-        height: 84%;
+        height: 90%;
         width: 90%;
         background-color: rgb(240, 240, 240);
         overflow-x: auto;
@@ -634,7 +635,7 @@ body{
         align-items: center;
         font-size: 2rem;
         font-weight: bold;
-        width: 5rem;
+        width: 10rem;
         color: snow;
     }
 
@@ -644,10 +645,6 @@ body{
         align-items: center;
         width: 20rem;
         margin-left: 1rem;
-    }
-
-    .imageContainer{
-        width: 20rem;
     }
 
     .subImageContainer{
@@ -727,7 +724,7 @@ body{
     }
 
     .tableContainer{
-        height: 84%;
+        height: 90%;
         width: 90%;
         background-color: rgb(240, 240, 240);
         overflow-x: auto;

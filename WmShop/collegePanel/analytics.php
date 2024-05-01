@@ -1,17 +1,13 @@
 <?php
 session_start();
 
-// Check if CollegeID is not set, redirect to login page
 if (!isset($_SESSION['CollegeID'])) {
     header("Location: ../authentication/signIn.php");
     exit;
 }
 
-// Rest of your existing code goes here
 include('../ConnectionDB/connection.php');
-// ... (rest of the code)
 
-// Get CollegeID from the session
 $CollegeID = $_SESSION['CollegeID'];
 ?>
 
@@ -41,17 +37,11 @@ $CollegeID = $_SESSION['CollegeID'];
             </div>
 
             <div class='profileContainer'>
-                <a href='../adminPanel/notification.php'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/notification.png' alt=''>
-                    </div>
-                </a>
-
-                <a href='../adminPanel/message.php'>
-                    <div class='subProfileContainer'>
-                        <img class='image1' src='../assets/img/chat-lines.png' alt=''>
-                    </div>
-                </a>
+                    <a href='../collegePanel/message.php'>
+                        <div class='subProfileContainer'>
+                            <img class='image1' src='../assets/img/chat-lines.png' alt=''>
+                        </div>
+                    </a>
 
                 <div class='subProfileContainer'>
                     <div class='menubarContainer' onclick='toggleMenu(this)'>
@@ -73,7 +63,6 @@ $CollegeID = $_SESSION['CollegeID'];
             <?php
             include('../ConnectionDB/connection.php');
 
-            // Assuming $CollegeID is defined before this code snippet
             if (isset($CollegeID)) {
                 $CollegeID = $_SESSION['CollegeID'];
                 $sql = "SELECT ItemName, ItemImage, SUM(Quantity) as TotalSales FROM CollegeItem WHERE CollegeID = $CollegeID GROUP BY ItemName, ItemImage";
@@ -87,18 +76,15 @@ $CollegeID = $_SESSION['CollegeID'];
                         <div class='imageContainer3'>
                             <img class='image10' src='../assets/img/" . $itemImage . "' alt=''>
                         </div>
-                        <div class='itemName'>
-                            <p>" . $itemName . "</p>
-                        </div>
                     </div>";
                     }
                 } else {
-                    echo "No records found.";
+                    echo "<div class='alert'>No records found.</div>";
                 }
 
                 $conn->close();
             } else {
-                echo "CollegeID is not set.";
+                echo "<div class='alert'>CollegeID is not set.</div>";
             }
             ?>
 
@@ -131,7 +117,6 @@ $CollegeID = $_SESSION['CollegeID'];
                 <?php
                 include('../ConnectionDB/connection.php');
 
-                // Assuming $CollegeID is defined before this code snippet
                 if (isset($CollegeID)) {
                     $CollegeID = $_SESSION['CollegeID'];
                     $sql = "SELECT ItemName, SUM(Quantity) as TotalQuantity, SUM(TotalPrice) as TotalPrice FROM CollegeTransaction WHERE CollegeID = $CollegeID AND Status = 'Order Complete' GROUP BY ItemName";
@@ -141,18 +126,16 @@ $CollegeID = $_SESSION['CollegeID'];
                     $quantities = [];
                     $totalPrices = [];
                     $incomes = [];
-                    $totalIncome = 0; // Initialize total income
+                    $totalIncome = 0;
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $itemNames[] = $row['ItemName'];
                             $totalPrices[] = $row['TotalPrice'];
 
-                            // Calculate 5% income for the current row
                             $income = 0.10 * $row['TotalPrice'];
                             $incomes[] = $income;
 
-                            // Accumulate income to the total
                             $totalIncome += $income;
 
                             echo "<tr>
@@ -165,7 +148,7 @@ $CollegeID = $_SESSION['CollegeID'];
                     }
                     $conn->close();
                 } else {
-                    echo "CollegeID is not set.";
+                    echo "<div class='alert'>CollegeID is not set.</div>";
                 }
                 ?>
                 </tbody>
@@ -187,7 +170,6 @@ $CollegeID = $_SESSION['CollegeID'];
                 <?php
                 include('../ConnectionDB/connection.php');
 
-                // Assuming $CollegeID is defined before this code snippet
                 if (isset($CollegeID)) {
                     $CollegeID = $_SESSION['CollegeID'];
                     $sql = "SELECT ItemName, ItemImage, SUM(Quantity) as TotalSales FROM CollegeTransaction WHERE CollegeID = $CollegeID AND Status = 'Order Complete' GROUP BY ItemName, ItemImage";
@@ -208,14 +190,13 @@ $CollegeID = $_SESSION['CollegeID'];
                         <td>$totalSale</td>
                     </tr>";
 
-                            // Store data for the chart
                             $itemNames[] = $itemName;
                             $totalSales[] = $totalSale;
                         }
                     }
                     $conn->close();
                 } else {
-                    echo "CollegeID is not set.";
+                    echo "<div class='alert'>CollegeID is not set.</div>";
                 }
                 ?>
                 </tbody>
@@ -227,10 +208,8 @@ $CollegeID = $_SESSION['CollegeID'];
 
 <script src="../assets/js/dashboard.js"></script>
 <script>
-    // Get the context of the canvas element for the bar graph
     var ctxBar = document.getElementById('barGraph').getContext('2d');
 
-    // Initialize the bar graph
     var barGraph = new Chart(ctxBar, {
         type: 'bar',
         data: {
@@ -252,10 +231,8 @@ $CollegeID = $_SESSION['CollegeID'];
         }
     });
 
-    // Get the context of the canvas element for the pie chart
     var ctxPie = document.getElementById('pieGraph').getContext('2d');
 
-    // Initialize the pie chart
     var pieGraph = new Chart(ctxPie, {
         type: 'pie',
         data: {
@@ -281,6 +258,26 @@ $CollegeID = $_SESSION['CollegeID'];
             }]
         }
     });
+
+    
+    function showAlert(message, type) {
+        var alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert');
+        alertDiv.classList.add(type);
+        alertDiv.innerText = message;
+
+        document.body.appendChild(alertDiv);
+
+        
+        setTimeout(function(){
+            alertDiv.remove();
+        }, 3000);
+    }
+
+    <?php
+    
+    ?>
+
 </script>
 </body>
 </html>

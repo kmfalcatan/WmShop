@@ -231,10 +231,15 @@ body{
         width: 40rem;
     }
 
+    .subContainer1{
+        height: 90%;
+    }
+
     .orderContainer{
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        height: 100%;
     }
 
     .imageContainer{
@@ -256,9 +261,5 @@ body{
 
     .subStatusContainer{
         width: 100%;
-    }
-
-    .subContainer1{
-        height: 12.2rem;
     }
 }

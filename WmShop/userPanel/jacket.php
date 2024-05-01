@@ -3,7 +3,6 @@ session_start();
 
 include('../ConnectionDB/connection.php');
 
-// ... (rest of your PHP code)
 
 ?>
 
@@ -29,19 +28,13 @@ include('../ConnectionDB/connection.php');
                 </div>
 
                 <div class='profileContainer'>
-                    <a href='../userPanel/notification.php'>
-                        <div class='subProfileContainer'>
-                            <img class='image1' src='../assets/img/notification.png' alt=''>
-                        </div>
-                    </a>
-
-                    <a href='/userPanel/message.php'>
+                    <a href='../userPanel/message.php'>
                         <div class='subProfileContainer'>
                             <img class='image1' src='../assets/img/chat-lines.png' alt=''>
                         </div>
                     </a>
 
-                    <a href='/userPanel/addToCart.php'>
+                    <a href='../userPanel/addToCart.php'>
                         <div class='subProfileContainer'>
                             <img class='image1' src='../assets/img/cart-2.png' alt=''>
                         </div>
@@ -68,21 +61,17 @@ include('../ConnectionDB/connection.php');
     <?php
 include('../ConnectionDB/connection.php');
 
-// Check if a user is logged in
 if (isset($_SESSION['College'])) {
     $college = $_SESSION['College'];
 
-    // Retrieve data from WmsuItem table
-    $wmsuItemSql = "SELECT * FROM WmsuItem WHERE TypesOfItem = 'Department Jacket'";
+    $wmsuItemSql = "SELECT * FROM WmsuItem WHERE TypesOfItem = 'College Jacket'";
     $wmsuItemResult = $conn->query($wmsuItemSql);
 
-    // Retrieve data from CollegeItem table for the logged-in college
-    $collegeItemSql = "SELECT * FROM CollegeItem WHERE College = '$college' AND TypesOfItem = 'Department Jacket'";
+    $collegeItemSql = "SELECT * FROM CollegeItem WHERE College = '$college' AND TypesOfItem = 'College Jacket'";
     $collegeItemResult = $conn->query($collegeItemSql);
 
     echo "<div class='container' id='itemContainer'>";
 
-    // Display items from WmsuItem table
     if ($wmsuItemResult->num_rows > 0) {
         while ($row = $wmsuItemResult->fetch_assoc()) {
             $WmsuItemID = $row['WmsuItemID'];
@@ -125,7 +114,6 @@ if (isset($_SESSION['College'])) {
         }
     }
 
-    // Display items from CollegeItem table
     if ($collegeItemResult->num_rows > 0) {
         while ($row = $collegeItemResult->fetch_assoc()) {
             $CollegeItemID = $row['CollegeItemID'];
@@ -146,7 +134,7 @@ if (isset($_SESSION['College'])) {
             echo "</div>";
 
             echo "<div class='viewButtonContainer'>";
-            echo "<a href='../userPanel/Department Jacket.php?CollegeItemID=$CollegeItemID'>";
+            echo "<a href='../userPanel/College Jacket.php?CollegeItemID=$CollegeItemID'>";
             echo "<button class='viewButton'>View</button>";
             echo "</a>";
             echo "</div>";
@@ -157,7 +145,7 @@ if (isset($_SESSION['College'])) {
 
             echo "<div class='viewIconContainer'>";
             echo "<div class='subViewIconContainer'>";
-            echo "<a href='../userPanel/Department Jacket.php?CollegeItemID=$CollegeItemID'>";
+            echo "<a href='../userPanel/College Jacket.php?CollegeItemID=$CollegeItemID'>";
             echo "<div class='viewIcon'>";
             echo "<img class='icon' src='../assets/img/view-icon-symbol-sign-vector-removebg-preview.png' alt=''>";
             echo "</div>";
@@ -168,9 +156,9 @@ if (isset($_SESSION['College'])) {
         }
     }
 
-    echo "</div>"; // Close container
+    echo "</div>";
 } else {
-    echo "<p>No college user is logged in.</p>";
+    echo "<script>alert('No college user is logged in.');</script>";
 }
 
 $conn->close();

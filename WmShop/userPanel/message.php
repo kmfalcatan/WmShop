@@ -11,7 +11,7 @@
     <div class='container'>
         <div class='subContainer'>
             <div class='backContainer' onclick='toggleSubContainer(event)'>
-                <a href='../userPanel/userhomePage.php'>
+                <a href='../UserPanel/userHomePage.php'>
                     <img class='backIcon' src='../assets/img/chevron-left (1).png' alt=''>
                 </a>
             </div>
@@ -21,45 +21,47 @@
             </div>
 
             <div class='messageContainer'>
-                <div class='subMessageContainer' onclick='toggleChatContainer()'>
-                    <div class='nameContainer'>
-                        <p>Student name:</p>
-                    </div>
+                <?php
+                include('../ConnectionDB/connection.php');
 
-                    <div class='deleteContainer'>
-                        <div class='subDeleteContainer'>
-                            <img class='delete' src='../assets/img/delete-permanent.png' alt=''>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                $CollegeQuery = "SELECT CollegeID, Role, CONCAT(FirstName, ' ', LastName) AS FullName FROM College";
+                $CollegeResult = $conn->query($CollegeQuery);
 
-        <div class='chatContainer' onclick='toggleSubContainer()'>
-            <div class='subChatContainer'>
-                <div class='studentChatContainer'>
-                    <div class='backContainer' onclick='toggleSubContainer(event)'>
-                        <img class='backIcon' src='../assets/img/chevron-left (1).png' alt=''>
-                    </div>
+                if ($CollegeResult->num_rows > 0) {
+                    while ($CollegeRow = $CollegeResult->fetch_assoc()) {
+                        $CollegeID = $CollegeRow['CollegeID'];
+                        $Role = $CollegeRow['Role'];
+                        echo "<a href='../userPanel/chat copy.php?CollegeID=$CollegeID'>
+                        <input type='hidden' value='$Role'>";
+                        echo "<div class='subMessageContainer' onclick='toggleChatContainer(\"" . $CollegeRow['FullName'] . "\", " . $CollegeRow['CollegeID'] . ", \"College\")'>";
+                        echo "<div class='nameContainer'>";
+                        echo "<p>" . $CollegeRow['FullName'] . "</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</a>";
+                    }
+                }
 
-                    <div class='studentChat'>
-                        <p class='chat'>HI</p>
-                    </div>
+                $collegeQuery = "SELECT AdminID, Role FROM Admin";
+                $collegeResult = $conn->query($collegeQuery);
 
-                    <div class='adminChat'>
-                        <p class='chat1'>HI</p>
-                    </div>
-                </div>
+                if ($collegeResult->num_rows > 0) {
+                    while ($collegeRow = $collegeResult->fetch_assoc()) {
+                        $AdminID = $collegeRow['AdminID'];
+                        $Role = $collegeRow['Role'];
+                        echo "<a href='../userPanel/chat copy.php?AdminID=$AdminID'>
+                        <input type='hidden' value='$Role'>";
+                        echo "<div class='subMessageContainer' onclick='toggleChatContainer(\"" . $collegeRow['AdminID'] . ", \"Admin\")'>";
+                        echo "<div class='nameContainer'>";
+                        echo "<p>" . $Role . "</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</a>";
+                    }
+                }
 
-                <div class='chatBarContainer'>
-                    <div class='subChatBarContainer'>
-                        <textarea class='chatBar' name='' id='' cols='30' rows='10'></textarea>
-                    </div>
-
-                    <div class='sendContainer'>
-                        <img class='sendIcon' src='../assets/img/201-2016537_send-message-icon-white-clipart-computer-icons-clip.png' alt=''>
-                    </div>
-                </div>
+                $conn->close();
+                ?>
             </div>
         </div>
     </div>
